@@ -1,134 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Upasana Arora - Product Manager Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
     }
     body {
-      background: linear-gradient(135deg, #FDEB71 0%, #F8D800 100%);
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f8f9fa, #e0f7fa);
       color: #333;
       line-height: 1.6;
-      padding: 2rem;
     }
     header {
+      background: #00bcd4;
+      color: white;
+      padding: 2rem 1rem;
       text-align: center;
-      margin-bottom: 3rem;
     }
     header h1 {
       font-size: 2.5rem;
-      font-weight: 800;
-      color: #2C3E50;
     }
-    header p {
-      font-size: 1.1rem;
-      color: #555;
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
     }
     section {
-      background: #fff;
-      padding: 2rem;
-      margin: 1.5rem auto;
-      border-radius: 12px;
-      max-width: 800px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     }
-    h2 {
-      color: #2C3E50;
+    section h2 {
+      color: #00acc1;
       margin-bottom: 1rem;
     }
-    a {
-      color: #0077b6;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    blockquote {
-      font-style: italic;
-      margin: 1rem 0;
-      padding-left: 1rem;
-      border-left: 4px solid #0077b6;
-    }
     .testimonial {
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+      background: #f1f1f1;
+      padding: 1rem;
+      border-left: 5px solid #00bcd4;
     }
     footer {
       text-align: center;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #666;
+      padding: 2rem;
+      background: #00bcd4;
+      color: white;
+    }
+    a.button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.7rem 1.2rem;
+      background-color: #00acc1;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    a.button:hover {
+      background-color: #008ba3;
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Upasana Arora</h1>
-    <p>Product Manager | Engineer | Creative Strategist</p>
+    <p>Product Manager | Innovator | Problem Solver</p>
+    <nav>
+      <a href="#profile">Profile</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#next">Next Steps</a>
+    </nav>
   </header>
 
-  <section>
+  <section id="profile">
     <h2>About Me</h2>
-    <p>I’m a Product Manager with hands-on experience at Testbook, where I launched key features, improved workflows, and delivered measurable impact through collaboration and data-backed decisions. I’ve also worked on content and marketing roles that refined my communication and strategy skills.</p>
-    <p>Currently pursuing my MSc in Engineering Business Management at the University of Warwick, I’m looking for exciting roles where I can solve meaningful problems, learn from creative teams, and build user-centric digital products.</p>
+    <p>I am a passionate Product Manager with a background in engineering and a track record of delivering results. At Testbook, I led impactful product features focused on user experience, data-driven outcomes, and operational excellence. My goal is to continue building products that solve real problems with creativity and clarity.</p>
   </section>
 
-  <section>
-    <h2>What I Did at Testbook</h2>
+  <section id="projects">
+    <h2>Projects</h2>
+    <p>Check out some of my work and project highlights here:</p>
+    <a href="https://drive.google.com/drive/folders/your-folder-id" target="_blank" class="button">View Projects</a>
+  </section>
+
+  <section id="experience">
+    <h2>Product Manager at Testbook</h2>
     <ul>
-      <li>Independently led features post-training within 2-3 months.</li>
-      <li>Implemented assignment and evaluation automation, reducing stakeholder time by 96%.</li>
-      <li>Launched a new Banking category with 1,300+ signups in the first month.</li>
-      <li>Drove 12% revenue growth and improved app downloads by 9% in two quarters.</li>
-      <li>Collaborated across tech, design, and analytics to enhance user experience and retention.</li>
+      <li>Launched new Banking category: 1300+ signups in month one, 12% revenue boost</li>
+      <li>Automated assignment evaluation: 96% reduction in stakeholder time</li>
+      <li>Boosted app downloads by 9% in 2 quarters with cross-functional collaboration</li>
+      <li>Designed lead ingestion flow: 18% increase in targeted product conversions</li>
+      <li>Coordinated product implementation at engineering facilities via site visits and stakeholder alignment</li>
     </ul>
   </section>
 
-  <section>
-    <h2>Projects</h2>
-    <p>Access my drive folder of work samples, case studies, and side projects here: <a href="https://drive.google.com" target="_blank">My Project Portfolio</a></p>
-  </section>
-
-  <section>
+  <section id="testimonials">
     <h2>Testimonials</h2>
-
     <div class="testimonial">
-      <strong>Sourabh Kabra – AVP Product Management, Testbook</strong>
-      <blockquote>
-        I had the pleasure of working with Upasana during her time at Testbook, where she joined as a fresher. In just 2-3 months of training, she quickly rose to a level where she could independently lead features... This mindset has been key to her success and made her an invaluable asset to my team. I do not doubt that Upasana would be a great addition to any team.
-      </blockquote>
+      <p><strong>Sourabh Kabra – Assistant Vice President, Product Management at Testbook</strong></p>
+      <p>"Upasana quickly rose to independently lead features within months of joining. Her user-focused problem-solving, proactive collaboration with tech teams, and results-oriented approach made her an invaluable asset. I highly recommend her!"</p>
     </div>
-
     <div class="testimonial">
-      <strong>Supreeta Balasubramanian – Editor, Bzaar</strong>
-      <blockquote>
-        Her writing is refreshing and versatile, and she is able to work well in different formats – from long-form content to short snippets. She was always helpful, reliable, and receptive to feedback. I’m happy to recommend her.
-      </blockquote>
+      <p><strong>Supreeta Balasubramanian – Editor at Bzaar</strong></p>
+      <p>"Her writing was refreshing and versatile. She consistently met deadlines, took feedback well, and showed strong adaptability across content formats. A smart and capable contributor to any team."</p>
     </div>
-
     <div class="testimonial">
-      <strong>Hayaa Fathima – Content Manager</strong>
-      <blockquote>
-        Upasana is dedicated, punctual, and skilled. Her ability to juggle multiple projects made a dramatic difference in our team's productivity. She’d be an asset to any organization.
-      </blockquote>
+      <p><strong>Hayaa Fathima – Social Media Strategist</strong></p>
+      <p>"Upasana was punctual, dedicated, and balanced multiple projects with ease. Her writing and organizational skills made a dramatic impact on team productivity. Highly recommended for any writing/editing role."</p>
     </div>
   </section>
 
-  <section>
-    <h2>What’s Next</h2>
-    <p>I’m actively exploring opportunities in Product Management and Strategy roles that align with my values – collaboration, creativity, and purpose-driven innovation. Let’s connect if you’re hiring or want to collaborate!</p>
-    <p><a href="https://linkedin.com/in/upasanaarora" target="_blank">Visit my LinkedIn</a></p>
+  <section id="next">
+    <h2>What's Next</h2>
+    <p>I’m currently seeking opportunities in Product or Project Management roles in the UK, starting from September 2025. I value a healthy work culture, meaningful innovation, and opportunities that let me create impact.</p>
   </section>
 
   <footer>
-    <p>&copy; 2025 Upasana Arora | Designed with care and curiosity.</p>
+    <p>Connect with me on <a href="https://www.linkedin.com/in/upasanaarora/" style="color: #fff; text-decoration: underline;">LinkedIn</a> | Email: upasana@example.com</p>
   </footer>
 </body>
-</html>
 
+</html>
