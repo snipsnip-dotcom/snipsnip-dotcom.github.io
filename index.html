@@ -18,6 +18,7 @@
       /* Main dark text */
       --text-medium: #555555;
       /* Secondary text */
+      --text-light: #ffffff; /* Added for light text on dark buttons */
       --accent-purple: #9b59b6;
       /* For gradients and accents */
       --accent-green: #2ecc71;
@@ -54,7 +55,7 @@
       /* For background elements positioning */
     }
 
-    /* Animated Background Elements */
+    /* --- Animated Background Elements (Blobs and new subtle stars) --- */
     .bg-gradient-blob {
       position: fixed;
       border-radius: 50%;
@@ -94,6 +95,23 @@
       animation-delay: 12s;
     }
 
+    /* Subtle Stars Background */
+    .star-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2; /* Ensure stars are behind blobs */
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 90% 40%, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+      background-size: 80px 80px, 120px 120px, 100px 100px; /* Varying sizes for depth */
+      animation: starTwinkle 20s infinite alternate;
+    }
+
     @keyframes floatEffect {
       0% {
         transform: translate(0, 0) scale(1);
@@ -121,7 +139,14 @@
       }
     }
 
-    /* Header & Navigation */
+    @keyframes starTwinkle {
+      0% { opacity: 1; }
+      50% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+
+
+    /* --- Header & Navigation --- */
     header {
       padding: 3rem 1.5rem;
       text-align: center;
@@ -160,15 +185,16 @@
       flex-wrap: wrap;
     }
 
+    /* --- Consistent Nav CTA Styling --- */
     nav a {
       text-decoration: none;
       color: var(--text-dark);
-      /* Dark text for links */
       font-weight: 500;
       font-size: 1.1rem;
+      padding: 0.5rem 1rem; /* Added padding for better click area */
+      border-radius: 5px; /* Slight roundness */
+      transition: all 0.3s ease;
       position: relative;
-      padding-bottom: 0.5rem;
-      transition: color 0.3s ease, transform 0.3s ease;
     }
 
     nav a::after {
@@ -187,6 +213,7 @@
     nav a:hover {
       color: var(--accent-green);
       transform: translateY(-3px);
+      background-color: rgba(46, 204, 113, 0.1); /* Subtle hover background */
     }
 
     nav a:hover::after {
@@ -194,7 +221,7 @@
       transform-origin: left;
     }
 
-    /* Sections */
+    /* --- Sections --- */
     section {
       max-width: 1000px;
       margin: 4rem auto;
@@ -244,12 +271,11 @@
       margin-right: auto;
       text-align: center;
       font-weight: normal;
-      /* Ensure normal font-weight */
     }
 
     section p strong {
-      font-weight: normal;
-      /* Ensure normal font-weight even if originally bolded */
+      font-weight: 600; /* Made strong tags actually bold within paragraphs */
+      color: var(--text-dark); /* Ensure it stands out slightly */
     }
 
     /* Project Section */
@@ -262,7 +288,6 @@
 
     .project-card {
       background: var(--bg-light);
-      /* Light background for cards */
       border-radius: 10px;
       padding: 2rem;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -308,12 +333,11 @@
       text-align: left;
       margin-bottom: 1.5rem;
       font-weight: normal;
-      /* Ensure normal font-weight */
     }
 
     .project-card p strong {
-      font-weight: normal;
-      /* Ensure normal font-weight */
+      font-weight: 600; /* Made strong tags actually bold within paragraphs */
+      color: var(--text-dark);
     }
 
     .project-card .tags {
@@ -326,7 +350,6 @@
     .project-card .tag {
       display: inline-block;
       background-color: rgba(155, 89, 182, 0.1);
-      /* Lighter background for tags */
       color: var(--accent-purple);
       padding: 0.4rem 1rem;
       border-radius: 20px;
@@ -334,6 +357,7 @@
       font-weight: 500;
     }
 
+    /* --- Consistent Project Link CTA Styling --- */
     .project-card .project-link {
       display: inline-flex;
       align-items: center;
@@ -342,12 +366,15 @@
       color: var(--accent-blue);
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s ease, transform 0.3s ease;
+      padding: 8px 0; /* Align with nav padding */
+      transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+      border-radius: 5px; /* Consistent roundness */
     }
 
     .project-card .project-link:hover {
       color: var(--accent-green);
       transform: translateX(5px);
+      background-color: rgba(52, 152, 219, 0.05); /* Very subtle hover */
     }
 
     /* Experience Section */
@@ -359,7 +386,6 @@
 
     #experience ul li {
       background: var(--bg-light);
-      /* Light background for list items */
       padding: 1.5rem 2rem;
       margin-bottom: 1.5rem;
       border-radius: 10px;
@@ -370,12 +396,11 @@
       border-left: 5px solid var(--accent-green);
       color: var(--text-medium);
       font-weight: normal;
-      /* Ensure normal font-weight */
     }
 
     #experience ul li strong {
-      font-weight: normal;
-      /* Ensure normal font-weight */
+      font-weight: 600; /* Made strong tags actually bold within paragraphs */
+      color: var(--text-dark);
     }
 
     #experience ul li:hover {
@@ -385,7 +410,6 @@
 
     #experience ul li::before {
       content: '\2022';
-      /* Bullet point */
       font-size: 1.8rem;
       color: var(--accent-purple);
       position: absolute;
@@ -399,7 +423,6 @@
     .testimonial {
       margin-bottom: 2rem;
       background: var(--bg-light);
-      /* Light background for testimonials */
       padding: 2rem;
       border-left: 5px solid var(--accent-blue);
       border-radius: 10px;
@@ -420,20 +443,18 @@
       text-align: left;
       margin-bottom: 1rem;
       font-weight: normal;
-      /* Ensure normal font-weight */
     }
 
     .testimonial p strong {
       display: block;
       margin-top: 1rem;
-      font-weight: normal;
-      /* Ensure normal font-weight */
+      font-weight: 600; /* Made strong tags actually bold within paragraphs */
       color: var(--text-dark);
       font-style: normal;
       font-size: 1.1rem;
     }
 
-    /* Call to Action Button */
+    /* --- Call to Action Button (Unified Styling) --- */
     .button-group {
       text-align: center;
       margin-top: 3rem;
@@ -448,8 +469,6 @@
       align-items: center;
       gap: 0.8rem;
       padding: 1rem 2.2rem;
-      background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
-      color: var(--text-light);
       text-decoration: none;
       border-radius: 8px;
       transition: all 0.4s ease-in-out;
@@ -460,6 +479,9 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
+      /* Default primary button style */
+      background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+      color: var(--text-light);
     }
 
     .button::before {
@@ -480,6 +502,7 @@
     .button:hover {
       transform: translateY(-5px) scale(1.02);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      /* Use a slightly different gradient on hover for primary */
       background: linear-gradient(45deg, var(--accent-blue), var(--accent-green));
     }
 
@@ -495,6 +518,8 @@
       color: var(--text-light);
       border-color: var(--accent-green);
       box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+      /* Remove transform to keep consistency with main button hover */
+      transform: translateY(0) scale(1);
     }
 
 
@@ -503,7 +528,6 @@
       text-align: center;
       padding: 3rem 1.5rem;
       background-color: var(--bg-medium);
-      /* Light background for footer */
       color: var(--text-medium);
       margin-top: 5rem;
       border-top: 1px solid var(--border-light);
@@ -534,7 +558,6 @@
 
     .social-icons a {
       color: var(--text-dark);
-      /* Dark icons for light theme */
       font-size: 2rem;
       margin: 0 1rem;
       transition: color 0.3s ease, transform 0.3s ease;
@@ -667,6 +690,8 @@
   <div class="bg-gradient-blob blob-2"></div>
   <div class="bg-gradient-blob blob-3"></div>
 
+  <div class="star-background"></div>
+
   <header>
     <h1>Upasana Arora</h1>
     <p>Product Manager | Innovator | Problem Solver</p>
@@ -752,19 +777,19 @@
     <div class="testimonial">
       <p>"Upasana quickly rose to independently lead features within months of joining. Her user-focused problem-solving, proactive collaboration with tech teams, and results-oriented approach made her an invaluable asset. I highly recommend her!"</p>
       <p>
-        — Sourabh Kabra – Assistant Vice President, Product Management at Testbook
+        — <strong>Sourabh Kabra</strong> – Assistant Vice President, Product Management at Testbook
       </p>
     </div>
     <div class="testimonial">
       <p>"Her writing was refreshing and versatile. She consistently met deadlines, took feedback well, and showed strong adaptability across content formats. A smart and capable contributor to any team."</p>
       <p>
-        — Supreeta Balasubramanian – Editor at Bzaar
+        — <strong>Supreeta Balasubramanian</strong> – Editor at Bzaar
       </p>
     </div>
     <div class="testimonial">
       <p>"Upasana was punctual, dedicated, and balanced multiple projects with ease. Her writing and organizational skills made a dramatic impact on team productivity. Highly recommended for any writing/editing role."</p>
       <p>
-        — Hayaa Fathima – Social Media Strategist
+        — <strong>Hayaa Fathima</strong> – Social Media Strategist
       </p>
     </div>
   </section>
