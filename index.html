@@ -5,183 +5,600 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Upasana Arora - Product Manager Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    :root {
+      --primary-color: #00bcd4; /* Teal */
+      --secondary-color: #ff9800; /* Orange - for accents */
+      --accent-color: #4CAF50; /* Green - for success/highlights */
+      --text-dark: #333;
+      --text-light: #f8f9fa;
+      --background-light: #f8f9fa;
+      --background-gradient: linear-gradient(to right, #e0f7fa, #f8f9fa);
+      --card-background: #ffffff;
+      --shadow-light: rgba(0, 0, 0, 0.05);
+      --shadow-medium: rgba(0, 0, 0, 0.1);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #f8f9fa, #e0f7fa);
-      color: #333;
+      background: var(--background-gradient);
+      color: var(--text-dark);
       line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
+
+    /* --- Header & Navigation --- */
     header {
-      background: #00bcd4;
-      color: white;
-      padding: 2rem 1rem;
+      background: var(--primary-color);
+      color: var(--text-light);
+      padding: 2.5rem 1rem;
       text-align: center;
-      position: sticky;
+      position: relative;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px var(--shadow-medium);
+      overflow: hidden;
     }
-    header img.profile-pic {
-      width: 120px;
-      height: 120px;
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: pulseEffect 8s infinite alternate;
+    }
+
+    @keyframes pulseEffect {
+      0% {
+        transform: scale(0.9);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+    }
+
+    header .profile-pic {
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 1rem;
-      border: 3px solid #fff;
-      transition: transform 0.3s ease;
+      margin-bottom: 1.5rem;
+      border: 5px solid var(--text-light);
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.2);
+      transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+      position: relative;
+      z-index: 2;
     }
-    header img.profile-pic:hover {
-      transform: scale(1.05);
+
+    header .profile-pic:hover {
+      transform: scale(1.08) rotate(3deg);
+      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.4);
     }
+
     header h1 {
-      font-size: 2.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
     nav {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1rem;
+      gap: 2rem;
+      margin-top: 2rem;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
+
     nav a {
       text-decoration: none;
-      color: white;
+      color: var(--text-light);
       font-weight: 500;
+      font-size: 1.1rem;
       position: relative;
-      padding-bottom: 4px;
-      transition: color 0.3s ease;
+      padding-bottom: 8px;
+      transition: color 0.3s ease, transform 0.3s ease;
     }
+
     nav a::after {
       content: '';
       position: absolute;
       left: 0;
       bottom: 0;
       width: 100%;
-      height: 2px;
-      background-color: white;
+      height: 3px;
+      background-color: var(--secondary-color);
       transform: scaleX(0);
       transform-origin: right;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
+
     nav a:hover {
-      color: #d0f0f7;
+      color: var(--secondary-color);
+      transform: translateY(-3px);
     }
+
     nav a:hover::after {
       transform: scaleX(1);
       transform-origin: left;
     }
+
+    /* --- Sections --- */
     section {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
+      max-width: 1100px;
+      margin: 2.5rem auto;
+      padding: 2rem 1.5rem;
+      background: var(--card-background);
+      border-radius: 15px;
+      box-shadow: 0 8px 20px var(--shadow-medium);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
+
     section:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
     }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s ease-out;
+    }
+
+    section:hover::before {
+      transform: scaleX(1);
+    }
+
     section h2 {
-      color: #00acc1;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    section p {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* --- Project Section --- */
+    #projects .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background: #fdfdfd;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-card h3 {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-card p {
+      font-size: 1rem;
+      color: #555;
       margin-bottom: 1rem;
     }
-    .testimonial {
-      margin-bottom: 1.5rem;
-      background: #f1f1f1;
-      padding: 1rem;
-      border-left: 5px solid #00bcd4;
+
+    .project-card .tags {
+      margin-top: 1rem;
     }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #00bcd4;
-      color: white;
+
+    .project-card .tag {
+      display: inline-block;
+      background-color: #e0f2f7;
+      color: var(--primary-color);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
     }
-    a.button {
+
+    .project-card .project-link {
       display: inline-block;
       margin-top: 1rem;
-      padding: 0.7rem 1.2rem;
-      background-color: #00acc1;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .project-card .project-link:hover {
+      color: var(--secondary-color);
+      text-decoration: underline;
+    }
+
+    /* --- Experience Section --- */
+    #experience ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    #experience ul li {
+      background: #e0f7fa;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      position: relative;
+      padding-left: 3rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+      transition: background-color 0.3s ease;
+    }
+
+    #experience ul li:hover {
+      background-color: #ccecf0;
+    }
+
+    #experience ul li::before {
+      content: '\2022'; /* Bullet point */
+      font-size: 1.5rem;
+      color: var(--secondary-color);
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* --- Testimonials Section --- */
+    .testimonial {
+      margin-bottom: 1.5rem;
+      background: #fdfdfd;
+      padding: 1.5rem;
+      border-left: 6px solid var(--secondary-color);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px var(--shadow-light);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .testimonial:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px var(--shadow-medium);
+    }
+
+    .testimonial::before {
+      content: '\201C'; /* Opening quote */
+      font-family: serif;
+      font-size: 4rem;
+      color: rgba(0, 188, 212, 0.1);
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      z-index: 0;
+    }
+
+    .testimonial p {
+      position: relative;
+      z-index: 1;
+      font-style: italic;
+      color: #555;
+    }
+
+    .testimonial p strong {
+      display: block;
+      margin-top: 0.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      font-style: normal;
+    }
+
+    /* --- Call to Action Button --- */
+    .button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.9rem 1.8rem;
+      background-color: var(--accent-color);
       color: white;
       text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s, transform 0.3s;
+      border-radius: 8px;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 500;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
-    a.button:hover {
+
+    .button:hover {
+      background-color: #388e3c;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .button.secondary {
+      background-color: var(--primary-color);
+    }
+
+    .button.secondary:hover {
       background-color: #008ba3;
-      transform: scale(1.05);
+    }
+
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: var(--primary-color);
+      color: var(--text-light);
+      margin-top: 4rem;
+      box-shadow: 0 -4px 15px var(--shadow-medium);
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    footer a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+    }
+
+    footer a:hover {
+      color: var(--text-light);
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      color: var(--text-light);
+      font-size: 1.8rem;
+      margin: 0 0.8rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--secondary-color);
+      transform: scale(1.2);
+    }
+
+    /* --- Responsive Design --- */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      nav {
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav a {
+        font-size: 1rem;
+        padding-bottom: 5px;
+      }
+
+      section {
+        margin: 1.5rem auto;
+        padding: 1.5rem 1rem;
+      }
+
+      section h2 {
+        font-size: 1.8rem;
+      }
+
+      .button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header .profile-pic {
+        width: 100px;
+        height: 100px;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      #experience ul li {
+        padding-left: 2rem;
+        font-size: 0.95rem;
+      }
+
+      #experience ul li::before {
+        font-size: 1.2rem;
+        left: 0.5rem;
+      }
     }
   </style>
 </head>
 
 <body>
   <header>
-    <img src="/mnt/data/ff1385a2-791e-4063-b39b-1080b815828f.png" alt="Upasana Arora" class="profile-pic">
+    <img src="https://via.placeholder.com/140/00bcd4/ffffff?text=Upasana" alt="Upasana Arora" class="profile-pic">
     <h1>Upasana Arora</h1>
     <p>Product Manager | Innovator | Problem Solver</p>
     <nav>
-      <a href="#profile">Profile</a>
+      <a href="#profile">About Me</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
       <a href="#testimonials">Testimonials</a>
-      <a href="#next">Next Steps</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <section id="profile">
     <h2>About Me</h2>
-    <p>I am a passionate Product Manager with a background in engineering and a track record of delivering results. At Testbook, I led impactful product features focused on user experience, data-driven outcomes, and operational excellence. My goal is to continue building products that solve real problems with creativity and clarity.</p>
+    <p>I am a passionate **Product Manager** with a robust background in engineering and a proven track record of **delivering impactful results**. My expertise lies in transforming complex challenges into intuitive, user-centric product solutions. At **Testbook**, I successfully spearheaded critical product features, always prioritizing user experience, **data-driven outcomes**, and operational excellence. My core mission is to continue building products that truly solve real-world problems, blending creativity with analytical rigor to create meaningful impact.</p>
+    <p>I thrive in dynamic environments where cross-functional collaboration is key to success. I'm adept at bridging the gap between technical teams, business stakeholders, and end-users, ensuring that product roadmaps are clear, well-executed, and aligned with strategic goals.</p>
   </section>
 
   <section id="projects">
-    <h2>Projects</h2>
-    <p>Check out some of my work and project highlights here:</p>
-    <a href="https://drive.google.com/drive/folders/1Y9FCR_X5i5eZyZxSkYoN_m0YGfgQTh7L?usp=sharing" target="_blank" class="button">View Projects</a>
+    <h2>Featured Projects & Highlights</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Banking Category Launch</h3>
+        <p>Led the launch of a new Banking exam preparation category, securing **1300+ signups** in the first month and contributing to a **12% revenue boost** for the platform.</p>
+        <div class="tags">
+          <span class="tag">Product Launch</span>
+          <span class="tag">Market Expansion</span>
+          <span class="tag">Revenue Growth</span>
+        </div>
+        <a href="https://drive.google.com/drive/folders/1Y9FCR_X5i5eZyZxSkYoN_m0YGfgQTh7L?usp=sharing" target="_blank" class="project-link">View Details <i class="fas fa-external-link-alt"></i></a>
+      </div>
+      <div class="project-card">
+        <h3>Automated Assignment Evaluation</h3>
+        <p>Designed and implemented a system for automated assignment evaluation, leading to a remarkable **96% reduction in stakeholder time** previously spent on manual grading.</p>
+        <div class="tags">
+          <span class="tag">Process Automation</span>
+          <span class="tag">Operational Efficiency</span>
+          <span class="tag">System Design</span>
+        </div>
+        <a href="https://drive.google.com/drive/folders/1Y9FCR_X5i5eZyZxSkYoN_m0YGfgQTh7L?usp=sharing" target="_blank" class="project-link">View Details <i class="fas fa-external-link-alt"></i></a>
+      </div>
+      <div class="project-card">
+        <h3>App Download Growth Initiative</h3>
+        <p>Collaborated cross-functionally to strategize and execute initiatives that resulted in a **9% increase in app downloads** over two quarters.</p>
+        <div class="tags">
+          <span class="tag">Growth Strategy</span>
+          <span class="tag">User Acquisition</span>
+          <span class="tag">Cross-functional</span>
+        </div>
+        <a href="https://drive.google.com/drive/folders/1Y9FCR_X5i5eZyZxSkYoN_m0YGfgQTh7L?usp=sharing" target="_blank" class="project-link">View Details <i class="fas fa-external-link-alt"></i></a>
+      </div>
+      <div class="project-card">
+        <h3>Lead Ingestion Flow Optimization</h3>
+        <p>Redesigned the lead ingestion flow, which led to an **18% increase in conversions** for targeted products.</p>
+        <div class="tags">
+          <span class="tag">Conversion Optimization</span>
+          <span class="tag">UX Design</span>
+          <span class="tag">Lead Management</span>
+        </div>
+        <a href="https://drive.google.com/drive/folders/1Y9FCR_X5i5eZyZxSkYoN_m0YGfgQTh7L?usp=sharing" target="_blank" class="project-link">View Details <i class="fas fa-external-link-alt"></i></a>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="https://drive.google.com/drive/folders/1Y9FCR_X5i5eZyZxSkYoN_m0YGfgQTh7L?usp=sharing" target="_blank" class="button">View All Projects <i class="fas fa-arrow-right"></i></a>
+    </div>
   </section>
 
   <section id="experience">
-    <h2>Product Manager at Testbook</h2>
+    <h2>Product Manager at Testbook (Key Contributions)</h2>
     <ul>
-      <li>Launched new Banking category: 1300+ signups in month one, 12% revenue boost</li>
-      <li>Automated assignment evaluation: 96% reduction in stakeholder time</li>
-      <li>Boosted app downloads by 9% in 2 quarters with cross-functional collaboration</li>
-      <li>Designed lead ingestion flow: 18% increase in targeted product conversions</li>
-      <li>Coordinated product implementation at engineering facilities via site visits and stakeholder alignment</li>
+      <li>**Launched new Banking category**: Achieved **1300+ signups** in month one, driving a **12% revenue boost**.</li>
+      <li>**Automated assignment evaluation**: Delivered a **96% reduction** in stakeholder time and effort.</li>
+      <li>**Boosted app downloads by 9%** in 2 quarters through strategic cross-functional collaboration.</li>
+      <li>**Designed and optimized lead ingestion flow**: Resulted in an **18% increase** in targeted product conversions.</li>
+      <li>Coordinated product implementation at engineering facilities, ensuring seamless rollout via site visits and proactive stakeholder alignment.</li>
+      <li>Spearheaded **A/B testing initiatives** to optimize user flows and feature adoption.</li>
+      <li>Conducted **market research and competitive analysis** to identify new opportunities and inform product strategy.</li>
     </ul>
   </section>
 
   <section id="testimonials">
-    <h2>Testimonials</h2>
+    <h2>What Others Say About My Work</h2>
     <div class="testimonial">
-      <p><strong>Sourabh Kabra – Assistant Vice President, Product Management at Testbook</strong></p>
-      <p>"Upasana quickly rose to independently lead features within months of joining. Her user-focused problem-solving, proactive collaboration with tech teams, and results-oriented approach made her an invaluable asset. I highly recommend her!"</p>
+      <p>"Upasana quickly rose to independently lead features within months of joining. Her **user-focused problem-solving**, proactive collaboration with tech teams, and **results-oriented approach** made her an invaluable asset. I highly recommend her!"</p>
+      <p><strong>— Sourabh Kabra – Assistant Vice President, Product Management at Testbook</strong></p>
     </div>
     <div class="testimonial">
-      <p><strong>Supreeta Balasubramanian – Editor at Bzaar</strong></p>
-      <p>"Her writing was refreshing and versatile. She consistently met deadlines, took feedback well, and showed strong adaptability across content formats. A smart and capable contributor to any team."</p>
+      <p>"Her writing was **refreshing and versatile**. She consistently met deadlines, took feedback well, and showed strong adaptability across content formats. A **smart and capable contributor** to any team."</p>
+      <p><strong>— Supreeta Balasubramanian – Editor at Bzaar</strong></p>
     </div>
     <div class="testimonial">
-      <p><strong>Hayaa Fathima – Social Media Strategist</strong></p>
-      <p>"Upasana was punctual, dedicated, and balanced multiple projects with ease. Her writing and organizational skills made a dramatic impact on team productivity. Highly recommended for any writing/editing role."</p>
+      <p>"Upasana was **punctual, dedicated, and balanced multiple projects with ease**. Her writing and organizational skills made a dramatic impact on team productivity. Highly recommended for any writing/editing role."</p>
+      <p><strong>— Hayaa Fathima – Social Media Strategist</strong></p>
     </div>
   </section>
 
-  <section id="next">
-    <h2>What's Next</h2>
-    <p>I’m currently seeking opportunities in Product or Project Management roles in the UK, starting from September 2025. I value a healthy work culture, meaningful innovation, and opportunities that let me create impact.</p>
+  <section id="contact">
+    <h2>Let's Connect & Build the Future</h2>
+    <p>I’m currently seeking exciting **Product or Project Management roles** in the **UK**, with availability starting from **September 2025**. I am deeply passionate about contributing to organizations that foster a healthy work culture, prioritize meaningful innovation, and offer ample opportunities to create lasting impact.</p>
+    <p>If you're looking for a dedicated, user-focused, and results-driven Product Manager, I'd love to hear from you!</p>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="mailto:upasana.arora212@gmail.com" class="button secondary">Email Me <i class="fas fa-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/aroraupasana/" target="_blank" class="button">Connect on LinkedIn <i class="fab fa-linkedin"></i></a>
+    </div>
   </section>
 
   <footer>
-    <p>Connect with me on <a href="https://www.linkedin.com/in/aroraupasana/" style="color: #fff; text-decoration: underline;">LinkedIn</a> | Email: upasana.arora212@gmail.com | Contact: 07901859997</p>
+    <p>&copy; 2025 Upasana Arora. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/aroraupasana/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:upasana.arora212@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    <p>Contact: 07901859997</p>
   </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>
 
 </html>
