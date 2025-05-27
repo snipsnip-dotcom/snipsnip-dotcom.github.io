@@ -10,18 +10,27 @@
   <style>
     /* Global Variables */
     :root {
-      --bg-dark: #1a1a1a;
-      --bg-medium: #2c2c2c;
-      --text-light: #f0f0f0;
-      --text-medium: #b0b0b0;
+      --bg-light: #f8f8f8;
+      /* Main light background */
+      --bg-medium: #ffffff;
+      /* Card/section background */
+      --text-dark: #333333;
+      /* Main dark text */
+      --text-medium: #555555;
+      /* Secondary text */
       --accent-purple: #9b59b6;
+      /* For gradients and accents */
       --accent-green: #2ecc71;
+      /* For gradients and accents */
       --accent-blue: #3498db;
+      /* For gradients and accents */
       --gradient-1-start: #8e44ad;
       --gradient-1-end: #3498db;
       --gradient-2-start: #27ae60;
       --gradient-2-end: #f39c12;
-      --shadow-color: rgba(0, 0, 0, 0.4);
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      /* Lighter shadow */
+      --border-light: rgba(0, 0, 0, 0.08);
     }
 
     /* Base Styles */
@@ -37,8 +46,8 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-light);
+      background-color: var(--bg-light);
+      color: var(--text-dark);
       line-height: 1.7;
       overflow-x: hidden;
       position: relative;
@@ -49,15 +58,17 @@
     .bg-gradient-blob {
       position: fixed;
       border-radius: 50%;
-      filter: blur(150px);
-      opacity: 0.4;
+      filter: blur(120px);
+      /* Slightly less blur for light theme */
+      opacity: 0.15;
+      /* Very subtle */
       z-index: -1;
-      animation: floatEffect 15s infinite ease-in-out alternate;
+      animation: floatEffect 18s infinite ease-in-out alternate;
     }
 
     .blob-1 {
-      width: 400px;
-      height: 400px;
+      width: 450px;
+      height: 450px;
       background: linear-gradient(135deg, var(--gradient-1-start), var(--gradient-1-end));
       top: 10%;
       left: 10%;
@@ -65,48 +76,48 @@
     }
 
     .blob-2 {
-      width: 350px;
-      height: 350px;
+      width: 400px;
+      height: 400px;
       background: linear-gradient(45deg, var(--gradient-2-start), var(--gradient-2-end));
       bottom: 5%;
       right: 15%;
-      animation-delay: 5s;
+      animation-delay: 6s;
     }
 
     .blob-3 {
-      width: 500px;
-      height: 500px;
+      width: 550px;
+      height: 550px;
       background: linear-gradient(225deg, var(--accent-purple), var(--accent-green));
       top: 50%;
       left: -20%;
       transform: translateY(-50%);
-      animation-delay: 10s;
+      animation-delay: 12s;
     }
 
     @keyframes floatEffect {
       0% {
         transform: translate(0, 0) scale(1);
-        opacity: 0.4;
+        opacity: 0.15;
       }
 
       25% {
-        transform: translate(20px, 30px) scale(1.05);
-        opacity: 0.5;
+        transform: translate(25px, 35px) scale(1.03);
+        opacity: 0.18;
       }
 
       50% {
-        transform: translate(-10px, -20px) scale(0.95);
-        opacity: 0.4;
+        transform: translate(-15px, -25px) scale(0.97);
+        opacity: 0.15;
       }
 
       75% {
-        transform: translate(30px, -10px) scale(1.08);
-        opacity: 0.5;
+        transform: translate(35px, -15px) scale(1.06);
+        opacity: 0.18;
       }
 
       100% {
         transform: translate(0, 0) scale(1);
-        opacity: 0.4;
+        opacity: 0.15;
       }
     }
 
@@ -116,19 +127,22 @@
       text-align: center;
       position: relative;
       z-index: 10;
-      overflow: hidden;
+      background-color: var(--bg-medium);
+      /* Light background for header */
+      border-bottom: 1px solid var(--border-light);
+      box-shadow: 0 2px 10px var(--shadow-color);
     }
 
     header h1 {
       font-family: 'Montserrat', sans-serif;
       font-size: 4.5rem;
       font-weight: 800;
-      background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue), var(--accent-green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text-dark);
+      /* Neutral dark color for name */
       margin-bottom: 0.5rem;
       line-height: 1.1;
-      text-shadow: 0 0 15px var(--accent-purple);
+      text-shadow: none;
+      /* Remove text shadow */
     }
 
     header p {
@@ -148,7 +162,8 @@
 
     nav a {
       text-decoration: none;
-      color: var(--text-light);
+      color: var(--text-dark);
+      /* Dark text for links */
       font-weight: 500;
       font-size: 1.1rem;
       position: relative;
@@ -190,12 +205,12 @@
       transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-light);
     }
 
     section:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     }
 
     section h2 {
@@ -228,6 +243,13 @@
       margin-left: auto;
       margin-right: auto;
       text-align: center;
+      font-weight: normal;
+      /* Ensure normal font-weight */
+    }
+
+    section p strong {
+      font-weight: normal;
+      /* Ensure normal font-weight even if originally bolded */
     }
 
     /* Project Section */
@@ -239,12 +261,13 @@
     }
 
     .project-card {
-      background: var(--bg-dark);
+      background: var(--bg-light);
+      /* Light background for cards */
       border-radius: 10px;
       padding: 2rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
       position: relative;
       overflow: hidden;
     }
@@ -268,8 +291,8 @@
 
     .project-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      border-color: rgba(0, 0, 0, 0.2);
     }
 
     .project-card h3 {
@@ -284,6 +307,13 @@
       color: var(--text-medium);
       text-align: left;
       margin-bottom: 1.5rem;
+      font-weight: normal;
+      /* Ensure normal font-weight */
+    }
+
+    .project-card p strong {
+      font-weight: normal;
+      /* Ensure normal font-weight */
     }
 
     .project-card .tags {
@@ -295,7 +325,8 @@
 
     .project-card .tag {
       display: inline-block;
-      background-color: rgba(var(--accent-purple), 0.2);
+      background-color: rgba(155, 89, 182, 0.1);
+      /* Lighter background for tags */
       color: var(--accent-purple);
       padding: 0.4rem 1rem;
       border-radius: 20px;
@@ -327,24 +358,29 @@
     }
 
     #experience ul li {
-      background: var(--bg-dark);
+      background: var(--bg-light);
+      /* Light background for list items */
       padding: 1.5rem 2rem;
       margin-bottom: 1.5rem;
       border-radius: 10px;
       position: relative;
       padding-left: 2.5rem;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
       transition: background-color 0.3s ease, transform 0.3s ease;
       border-left: 5px solid var(--accent-green);
-    }
-
-    #experience ul li:hover {
-      background-color: #383838;
-      transform: translateX(5px);
+      color: var(--text-medium);
+      font-weight: normal;
+      /* Ensure normal font-weight */
     }
 
     #experience ul li strong {
-      color: var(--text-light);
+      font-weight: normal;
+      /* Ensure normal font-weight */
+    }
+
+    #experience ul li:hover {
+      background-color: #f0f0f0;
+      transform: translateX(5px);
     }
 
     #experience ul li::before {
@@ -362,11 +398,12 @@
     /* Testimonials Section */
     .testimonial {
       margin-bottom: 2rem;
-      background: var(--bg-dark);
+      background: var(--bg-light);
+      /* Light background for testimonials */
       padding: 2rem;
       border-left: 5px solid var(--accent-blue);
       border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
       position: relative;
       overflow: hidden;
       transition: all 0.3s ease;
@@ -374,7 +411,7 @@
 
     .testimonial:hover {
       transform: translateX(8px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     }
 
     .testimonial p {
@@ -382,13 +419,16 @@
       color: var(--text-medium);
       text-align: left;
       margin-bottom: 1rem;
+      font-weight: normal;
+      /* Ensure normal font-weight */
     }
 
     .testimonial p strong {
       display: block;
       margin-top: 1rem;
-      font-weight: 600;
-      color: var(--text-light);
+      font-weight: normal;
+      /* Ensure normal font-weight */
+      color: var(--text-dark);
       font-style: normal;
       font-size: 1.1rem;
     }
@@ -415,7 +455,7 @@
       transition: all 0.4s ease-in-out;
       font-weight: 600;
       font-size: 1.1rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
       border: none;
       cursor: pointer;
       position: relative;
@@ -439,12 +479,12 @@
 
     .button:hover {
       transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
       background: linear-gradient(45deg, var(--accent-blue), var(--accent-green));
     }
 
     .button.secondary {
-      background: var(--bg-dark);
+      background: var(--bg-light);
       border: 2px solid var(--accent-green);
       color: var(--accent-green);
       box-shadow: none;
@@ -463,10 +503,11 @@
       text-align: center;
       padding: 3rem 1.5rem;
       background-color: var(--bg-medium);
+      /* Light background for footer */
       color: var(--text-medium);
       margin-top: 5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+      border-top: 1px solid var(--border-light);
+      box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
     }
 
     footer p {
@@ -492,7 +533,8 @@
     }
 
     .social-icons a {
-      color: var(--text-light);
+      color: var(--text-dark);
+      /* Dark icons for light theme */
       font-size: 2rem;
       margin: 0 1rem;
       transition: color 0.3s ease, transform 0.3s ease;
@@ -563,23 +605,23 @@
       }
 
       .bg-gradient-blob {
-        filter: blur(100px);
-        opacity: 0.3;
+        filter: blur(80px);
+        opacity: 0.1;
       }
 
       .blob-1 {
-        width: 300px;
-        height: 300px;
+        width: 280px;
+        height: 280px;
       }
 
       .blob-2 {
-        width: 250px;
-        height: 250px;
+        width: 230px;
+        height: 230px;
       }
 
       .blob-3 {
-        width: 350px;
-        height: 350px;
+        width: 330px;
+        height: 330px;
       }
     }
 
@@ -639,8 +681,8 @@
 
   <section id="profile">
     <h2>About Me</h2>
-    <p>I am a passionate **Product Manager** with a robust background in engineering and a proven track record of **delivering impactful results**. My expertise lies in transforming complex challenges into intuitive, user-centric product solutions. At **Testbook**, I successfully spearheaded critical product features, always prioritizing user experience, **data-driven outcomes**, and operational excellence. My core mission is to continue building products that truly solve real-world problems, blending creativity with analytical rigor to create meaningful impact.</p>
-    <p>I thrive in dynamic environments where cross-functional collaboration is key to success. I'm adept at bridging the gap between technical teams, business stakeholders, and end-users, ensuring that product roadmaps are clear, well-executed, and aligned with strategic goals.</p>
+    <p>I am a passionate Product Manager with a robust background in engineering and a proven track record of delivering impactful results. My expertise lies in transforming complex challenges into intuitive, user-centric product solutions. At Testbook, I successfully spearheaded critical product features, always prioritizing user experience, data-driven outcomes, and operational excellence. My core mission is to continue building products that truly solve real-world problems, blending creativity with analytical rigor to create meaningful impact.</p>
+    <p>I thrive in dynamic environments where cross-functional collaboration is key to success. I am adept at bridging the gap between technical teams, business stakeholders, and end-users, ensuring that product roadmaps are clear, well-executed, and aligned with strategic goals.</p>
   </section>
 
   <section id="projects">
@@ -648,7 +690,7 @@
     <div class="project-grid">
       <div class="project-card">
         <h3>Banking Category Launch</h3>
-        <p>Led the launch of a new Banking exam preparation category, securing **1300+ signups** in the first month and contributing to a **12% revenue boost** for the platform.</p>
+        <p>Led the launch of a new Banking exam preparation category, securing 1300+ signups in the first month and contributing to a 12% revenue boost for the platform.</p>
         <div class="tags">
           <span class="tag">Product Launch</span>
           <span class="tag">Market Expansion</span>
@@ -658,7 +700,7 @@
       </div>
       <div class="project-card">
         <h3>Automated Assignment Evaluation</h3>
-        <p>Designed and implemented a system for automated assignment evaluation, leading to a remarkable **96% reduction in stakeholder time** previously spent on manual grading.</p>
+        <p>Designed and implemented a system for automated assignment evaluation, leading to a remarkable 96% reduction in stakeholder time previously spent on manual grading.</p>
         <div class="tags">
           <span class="tag">Process Automation</span>
           <span class="tag">Operational Efficiency</span>
@@ -668,7 +710,7 @@
       </div>
       <div class="project-card">
         <h3>App Download Growth Initiative</h3>
-        <p>Collaborated cross-functionally to strategize and execute initiatives that resulted in a **9% increase in app downloads** over two quarters.</p>
+        <p>Collaborated cross-functionally to strategize and execute initiatives that resulted in a 9% increase in app downloads over two quarters.</p>
         <div class="tags">
           <span class="tag">Growth Strategy</span>
           <span class="tag">User Acquisition</span>
@@ -678,7 +720,7 @@
       </div>
       <div class="project-card">
         <h3>Lead Ingestion Flow Optimization</h3>
-        <p>Redesigned the lead ingestion flow, which led to an **18% increase in conversions** for targeted products.</p>
+        <p>Redesigned the lead ingestion flow, which led to an 18% increase in conversions for targeted products.</p>
         <div class="tags">
           <span class="tag">Conversion Optimization</span>
           <span class="tag">UX Design</span>
@@ -695,42 +737,42 @@
   <section id="experience">
     <h2>Product Manager at Testbook (Key Contributions)</h2>
     <ul>
-      <li>**Launched new Banking category**: Achieved **1300+ signups** in month one, driving a **12% revenue boost**.</li>
-      <li>**Automated assignment evaluation**: Delivered a **96% reduction** in stakeholder time and effort.</li>
-      <li>**Boosted app downloads by 9%** in 2 quarters through strategic cross-functional collaboration.</li>
-      <li>**Designed and optimized lead ingestion flow**: Resulted in an **18% increase** in targeted product conversions.</li>
+      <li>Launched new Banking category: Achieved 1300+ signups in month one, driving a 12% revenue boost.</li>
+      <li>Automated assignment evaluation: Delivered a 96% reduction in stakeholder time and effort.</li>
+      <li>Boosted app downloads by 9% in 2 quarters through strategic cross-functional collaboration.</li>
+      <li>Designed and optimized lead ingestion flow: Resulted in an 18% increase in targeted product conversions.</li>
       <li>Coordinated product implementation at engineering facilities, ensuring seamless rollout via site visits and proactive stakeholder alignment.</li>
-      <li>Spearheaded **A/B testing initiatives** to optimize user flows and feature adoption.</li>
-      <li>Conducted **market research and competitive analysis** to identify new opportunities and inform product strategy.</li>
+      <li>Spearheaded A/B testing initiatives to optimize user flows and feature adoption.</li>
+      <li>Conducted market research and competitive analysis to identify new opportunities and inform product strategy.</li>
     </ul>
   </section>
 
   <section id="testimonials">
     <h2>What Others Say About My Work</h2>
     <div class="testimonial">
-      <p>"Upasana quickly rose to independently lead features within months of joining. Her **user-focused problem-solving**, proactive collaboration with tech teams, and **results-oriented approach** made her an invaluable asset. I highly recommend her!"</p>
+      <p>"Upasana quickly rose to independently lead features within months of joining. Her user-focused problem-solving, proactive collaboration with tech teams, and results-oriented approach made her an invaluable asset. I highly recommend her!"</p>
       <p>
-        <strong>— Sourabh Kabra – Assistant Vice President, Product Management at Testbook</strong>
+        — Sourabh Kabra – Assistant Vice President, Product Management at Testbook
       </p>
     </div>
     <div class="testimonial">
-      <p>"Her writing was **refreshing and versatile**. She consistently met deadlines, took feedback well, and showed strong adaptability across content formats. A **smart and capable contributor** to any team."</p>
+      <p>"Her writing was refreshing and versatile. She consistently met deadlines, took feedback well, and showed strong adaptability across content formats. A smart and capable contributor to any team."</p>
       <p>
-        <strong>— Supreeta Balasubramanian – Editor at Bzaar</strong>
+        — Supreeta Balasubramanian – Editor at Bzaar
       </p>
     </div>
     <div class="testimonial">
-      <p>"Upasana was **punctual, dedicated, and balanced multiple projects with ease**. Her writing and organizational skills made a dramatic impact on team productivity. Highly recommended for any writing/editing role."</p>
+      <p>"Upasana was punctual, dedicated, and balanced multiple projects with ease. Her writing and organizational skills made a dramatic impact on team productivity. Highly recommended for any writing/editing role."</p>
       <p>
-        <strong>— Hayaa Fathima – Social Media Strategist</strong>
+        — Hayaa Fathima – Social Media Strategist
       </p>
     </div>
   </section>
 
   <section id="contact">
     <h2>Let's Connect & Build the Future</h2>
-    <p>I’m currently seeking exciting **Product or Project Management roles** in the **UK**, with availability starting from **September 2025**. I am deeply passionate about contributing to organizations that foster a healthy work culture, prioritize meaningful innovation, and offer ample opportunities to create lasting impact.</p>
-    <p>If you're looking for a dedicated, user-focused, and results-driven Product Manager, I'd love to hear from you!</p>
+    <p>I am currently seeking exciting Product or Project Management roles in the UK, with availability starting from September 2025. I am deeply passionate about contributing to organizations that foster a healthy work culture, prioritize meaningful innovation, and offer ample opportunities to create lasting impact.</p>
+    <p>If you are looking for a dedicated, user-focused, and results-driven Product Manager, I would love to hear from you!</p>
     <div class="button-group">
       <a href="mailto:upasana.arora212@gmail.com" class="button secondary">Email Me <i class="fas fa-envelope"></i></a>
       <a href="https://www.linkedin.com/in/aroraupasana/" target="_blank" class="button">Connect on LinkedIn <i class="fab fa-linkedin"></i></a>
@@ -742,7 +784,7 @@
     <div class="social-icons">
       <a href="https://www.linkedin.com/in/aroraupasana/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
       <a href="mailto:upasana.arora212@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      </div>
+    </div>
     <p>Contact: 07901859997</p>
   </footer>
 
