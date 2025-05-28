@@ -15,23 +15,33 @@
       --bg-medium: #ffffff;
       /* Card/section background */
       --text-dark: #333333;
-      /* Main dark text */
+      /* Main dark text (now for headings too) */
       --text-medium: #555555;
       /* Secondary text */
-      --text-light: #ffffff; /* Added for light text on dark buttons */
+      --text-light: #ffffff;
+      /* For light text on dark buttons */
       --accent-purple: #9b59b6;
       /* For gradients and accents */
       --accent-green: #2ecc71;
       /* For gradients and accents */
       --accent-blue: #3498db;
       /* For gradients and accents */
-      --gradient-1-start: #8e44ad;
-      --gradient-1-end: #3498db;
-      --gradient-2-start: #27ae60;
-      --gradient-2-end: #f39c12;
-      --shadow-color: rgba(0, 0, 0, 0.1);
+
+      /* More diffused gradient colors for blobs */
+      --gradient-1-start: #ff7e5f;
+      --gradient-1-end: #feb47b;
+      --gradient-2-start: #83a4d4;
+      --gradient-2-end: #b6fbff;
+      --gradient-3-start: #a8ff78;
+      --gradient-3-end: #78ffd6;
+      --gradient-4-start: #ff9a9e;
+      --gradient-4-end: #fad0c4;
+      --gradient-5-start: #fbc2eb;
+      --gradient-5-end: #a6c1ee;
+
+      --shadow-color: rgba(0, 0, 0, 0.08);
       /* Lighter shadow */
-      --border-light: rgba(0, 0, 0, 0.08);
+      --border-light: rgba(0, 0, 0, 0.06);
     }
 
     /* Base Styles */
@@ -55,21 +65,21 @@
       /* For background elements positioning */
     }
 
-    /* --- Animated Background Elements (Blobs and new subtle stars) --- */
+    /* --- Animated Background Elements (Blobs) --- */
     .bg-gradient-blob {
       position: fixed;
       border-radius: 50%;
-      filter: blur(120px);
-      /* Slightly less blur for light theme */
-      opacity: 0.15;
-      /* Very subtle */
+      /* Larger blur for more diffusion like Sam Dickie */
+      filter: blur(250px);
+      /* Much lower opacity for subtlety */
+      opacity: 0.08;
       z-index: -1;
-      animation: floatEffect 18s infinite ease-in-out alternate;
+      animation: floatEffect 20s infinite ease-in-out alternate;
     }
 
     .blob-1 {
-      width: 450px;
-      height: 450px;
+      width: 600px;
+      height: 600px;
       background: linear-gradient(135deg, var(--gradient-1-start), var(--gradient-1-end));
       top: 10%;
       left: 10%;
@@ -77,8 +87,8 @@
     }
 
     .blob-2 {
-      width: 400px;
-      height: 400px;
+      width: 550px;
+      height: 550px;
       background: linear-gradient(45deg, var(--gradient-2-start), var(--gradient-2-end));
       bottom: 5%;
       right: 15%;
@@ -86,63 +96,60 @@
     }
 
     .blob-3 {
-      width: 550px;
-      height: 550px;
-      background: linear-gradient(225deg, var(--accent-purple), var(--accent-green));
+      width: 700px;
+      height: 700px;
+      background: linear-gradient(225deg, var(--gradient-3-start), var(--gradient-3-end));
       top: 50%;
       left: -20%;
       transform: translateY(-50%);
       animation-delay: 12s;
     }
 
-    /* Subtle Stars Background */
-    .star-background {
-      position: fixed;
+    /* Additional blobs for more coverage and gradient variation */
+    .blob-4 {
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(300deg, var(--gradient-4-start), var(--gradient-4-end));
       top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2; /* Ensure stars are behind blobs */
-      pointer-events: none;
-      background-image:
-        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-        radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-        radial-gradient(circle at 90% 40%, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-      background-size: 80px 80px, 120px 120px, 100px 100px; /* Varying sizes for depth */
-      animation: starTwinkle 20s infinite alternate;
+      right: 0;
+      animation-delay: 3s;
     }
+
+    .blob-5 {
+      width: 650px;
+      height: 650px;
+      background: linear-gradient(90deg, var(--gradient-5-start), var(--gradient-5-end));
+      bottom: -10%;
+      left: 20%;
+      animation-delay: 9s;
+    }
+
 
     @keyframes floatEffect {
       0% {
         transform: translate(0, 0) scale(1);
-        opacity: 0.15;
+        opacity: 0.08;
       }
 
       25% {
-        transform: translate(25px, 35px) scale(1.03);
-        opacity: 0.18;
+        transform: translate(40px, 50px) scale(1.02);
+        opacity: 0.1;
       }
 
       50% {
-        transform: translate(-15px, -25px) scale(0.97);
-        opacity: 0.15;
+        transform: translate(-30px, -40px) scale(0.98);
+        opacity: 0.08;
       }
 
       75% {
-        transform: translate(35px, -15px) scale(1.06);
-        opacity: 0.18;
+        transform: translate(50px, -30px) scale(1.03);
+        opacity: 0.1;
       }
 
       100% {
         transform: translate(0, 0) scale(1);
-        opacity: 0.15;
+        opacity: 0.08;
       }
-    }
-
-    @keyframes starTwinkle {
-      0% { opacity: 1; }
-      50% { opacity: 0.8; }
-      100% { opacity: 1; }
     }
 
 
@@ -153,7 +160,6 @@
       position: relative;
       z-index: 10;
       background-color: var(--bg-medium);
-      /* Light background for header */
       border-bottom: 1px solid var(--border-light);
       box-shadow: 0 2px 10px var(--shadow-color);
     }
@@ -162,12 +168,11 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 4.5rem;
       font-weight: 800;
+      /* Black color for heading */
       color: var(--text-dark);
-      /* Neutral dark color for name */
       margin-bottom: 0.5rem;
       line-height: 1.1;
       text-shadow: none;
-      /* Remove text shadow */
     }
 
     header p {
@@ -191,8 +196,8 @@
       color: var(--text-dark);
       font-weight: 500;
       font-size: 1.1rem;
-      padding: 0.5rem 1rem; /* Added padding for better click area */
-      border-radius: 5px; /* Slight roundness */
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
       transition: all 0.3s ease;
       position: relative;
     }
@@ -213,7 +218,7 @@
     nav a:hover {
       color: var(--accent-green);
       transform: translateY(-3px);
-      background-color: rgba(46, 204, 113, 0.1); /* Subtle hover background */
+      background-color: rgba(46, 204, 113, 0.1);
     }
 
     nav a:hover::after {
@@ -244,8 +249,9 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 2.8rem;
       font-weight: 700;
+      /* Black color for heading */
+      color: var(--text-dark);
       margin-bottom: 2rem;
-      color: var(--accent-purple);
       text-align: center;
       position: relative;
     }
@@ -274,8 +280,8 @@
     }
 
     section p strong {
-      font-weight: 600; /* Made strong tags actually bold within paragraphs */
-      color: var(--text-dark); /* Ensure it stands out slightly */
+      font-weight: 600;
+      color: var(--text-dark);
     }
 
     /* Project Section */
@@ -322,8 +328,10 @@
 
     .project-card h3 {
       font-family: 'Montserrat', sans-serif;
-      color: var(--accent-green);
+      /* Black color for heading */
+      color: var(--text-dark);
       font-size: 1.8rem;
+      font-weight: 700;
       margin-bottom: 1rem;
     }
 
@@ -336,7 +344,7 @@
     }
 
     .project-card p strong {
-      font-weight: 600; /* Made strong tags actually bold within paragraphs */
+      font-weight: 600;
       color: var(--text-dark);
     }
 
@@ -366,15 +374,15 @@
       color: var(--accent-blue);
       text-decoration: none;
       font-weight: 600;
-      padding: 8px 0; /* Align with nav padding */
+      padding: 8px 0;
       transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
-      border-radius: 5px; /* Consistent roundness */
+      border-radius: 5px;
     }
 
     .project-card .project-link:hover {
       color: var(--accent-green);
       transform: translateX(5px);
-      background-color: rgba(52, 152, 219, 0.05); /* Very subtle hover */
+      background-color: rgba(52, 152, 219, 0.05);
     }
 
     /* Experience Section */
@@ -399,7 +407,7 @@
     }
 
     #experience ul li strong {
-      font-weight: 600; /* Made strong tags actually bold within paragraphs */
+      font-weight: 600;
       color: var(--text-dark);
     }
 
@@ -448,7 +456,7 @@
     .testimonial p strong {
       display: block;
       margin-top: 1rem;
-      font-weight: 600; /* Made strong tags actually bold within paragraphs */
+      font-weight: 600;
       color: var(--text-dark);
       font-style: normal;
       font-size: 1.1rem;
@@ -502,7 +510,6 @@
     .button:hover {
       transform: translateY(-5px) scale(1.02);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-      /* Use a slightly different gradient on hover for primary */
       background: linear-gradient(45deg, var(--accent-blue), var(--accent-green));
     }
 
@@ -518,8 +525,7 @@
       color: var(--text-light);
       border-color: var(--accent-green);
       box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
-      /* Remove transform to keep consistency with main button hover */
-      transform: translateY(0) scale(1);
+      transform: translateY(-5px) scale(1.02); /* Ensured consistent hover effect */
     }
 
 
@@ -628,23 +634,13 @@
       }
 
       .bg-gradient-blob {
-        filter: blur(80px);
-        opacity: 0.1;
+        filter: blur(100px); /* Reduce blur on mobile for performance */
+        opacity: 0.05; /* Even more subtle on mobile */
       }
 
-      .blob-1 {
-        width: 280px;
-        height: 280px;
-      }
-
-      .blob-2 {
-        width: 230px;
-        height: 230px;
-      }
-
-      .blob-3 {
-        width: 330px;
-        height: 330px;
+      .blob-1, .blob-2, .blob-3, .blob-4, .blob-5 {
+        width: 250px;
+        height: 250px;
       }
     }
 
@@ -689,8 +685,8 @@
   <div class="bg-gradient-blob blob-1"></div>
   <div class="bg-gradient-blob blob-2"></div>
   <div class="bg-gradient-blob blob-3"></div>
-
-  <div class="star-background"></div>
+  <div class="bg-gradient-blob blob-4"></div>
+  <div class="bg-gradient-blob blob-5"></div>
 
   <header>
     <h1>Upasana Arora</h1>
