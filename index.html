@@ -1,444 +1,944 @@
-] <!DOCTYPE html>
- <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
- <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Upasana Arora - Product Manager Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
-   rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-   /* Global Variables */
-   :root {
-    --bg-light: #f8f8f8;
-    /* Main light background */
-    --bg-medium: #ffffff;
-    /* Card/section background */
-    --text-dark: #333333;
-    /* Main dark text (now for all headings) */
-    --text-medium: #555555;
-    /* Secondary text */
-    --text-light: #ffffff;
-    /* For light text on dark buttons */
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upasana Arora - Product Manager Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Variables */
+        :root {
+            --bg-light: #f8f8f8;
+            /* Main light background */
+            --bg-medium: #ffffff;
+            /* Card/section background */
+            --text-dark: #333333;
+            /* Main dark text (now for all headings) */
+            --text-medium: #555555;
+            /* Secondary text */
+            --text-light: #ffffff;
+            /* For light text on dark buttons */
 
-    /* More diffused gradient colors for blobs, inspired by Sam Dickie */
-    --gradient-1-start: #ff7e5f;
-    --gradient-1-end: #feb47b;
-    --gradient-2-start: #83a4d4;
-    --gradient-2-end: #b6fbff;
-    --gradient-3-start: #a8ff78;
-    --gradient-3-end: #78ffd6;
-    --gradient-4-start: #ff9a9e;
-    --gradient-4-end: #fad0c4;
-    --gradient-5-start: #fbc2eb;
-    --gradient-5-end: #a6c1ee;
+            /* More diffused gradient colors for blobs, inspired by Sam Dickie */
+            --gradient-1-start: #ff7e5f;
+            --gradient-1-end: #feb47b;
+            --gradient-2-start: #83a4d4;
+            --gradient-2-end: #b6fbff;
+            --gradient-3-start: #a8ff78;
+            --gradient-3-end: #78ffd6;
+            --gradient-4-start: #ff9a9e;
+            --gradient-4-end: #fad0c4;
+            --gradient-5-start: #fbc2eb;
+            --gradient-5-end: #a6c1ee;
 
-    --shadow-color: rgba(0, 0, 0, 0.08);
-    /* Lighter shadow */
-    --border-light: rgba(0, 0, 0, 0.06);
-   }
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            /* Lighter shadow */
+            --border-light: rgba(0, 0, 0, 0.06);
+        }
 
-   /* Base Styles */
-   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-   }
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-   body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-light);
-    color: var(--text-dark);
-    line-height: 1.6;
-    overflow-x: hidden;
-    /* Prevent horizontal scroll */
-   }
+        html {
+            scroll-behavior: smooth;
+        }
 
-   /* Interactive Background Styles */
-   #interactive-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    /* Allows clicks to pass through */
-    z-index: -1;
-    /* Behind other content */
-   }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+            /* For background elements positioning */
+        }
 
-   .star,
-   .circle {
-    position: absolute;
-    background: white;
-    /* Default color */
-    border-radius: 50%;
-    opacity: 0;
-    /* Initially hidden */
-    animation: float 4s infinite alternate, fadeInOut 4s forwards;
-    /* Combined animations */
-   }
+        /* --- Animated Background Elements (Blobs - now more like Sam Dickie's circles) --- */
+        .bg-gradient-blob {
+            position: fixed;
+            border-radius: 50%;
+            /* Much larger blur for more diffusion */
+            filter: blur(250px);
+            /* Much lower opacity for subtlety */
+            opacity: 0.08;
+            z-index: -1;
+            animation: floatEffect 20s infinite ease-in-out alternate;
+        }
 
-   .star {
-    width: 5px;
-    height: 5px;
-   }
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--gradient-1-start), var(--gradient-1-end));
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
 
-   .circle {
-    width: 10px;
-    height: 10px;
-   }
+        .blob-2 {
+            width: 550px;
+            height: 550px;
+            background: linear-gradient(45deg, var(--gradient-2-start), var(--gradient-2-end));
+            bottom: 5%;
+            right: 15%;
+            animation-delay: 6s;
+        }
 
-   @keyframes float {
-    from {
-     transform: translateY(0);
-    }
+        .blob-3 {
+            width: 700px;
+            height: 700px;
+            background: linear-gradient(225deg, var(--gradient-3-start), var(--gradient-3-end));
+            top: 50%;
+            left: -20%;
+            transform: translateY(-50%);
+            animation-delay: 12s;
+        }
 
-    to {
-     transform: translateY(20px);
-    }
-   }
+        /* Additional blobs for more coverage and gradient variation */
+        .blob-4 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(300deg, var(--gradient-4-start), var(--gradient-4-end));
+            top: 0;
+            right: 0;
+            animation-delay: 3s;
+        }
 
-   @keyframes fadeInOut {
-    0% {
-     opacity: 0;
-    }
+        .blob-5 {
+            width: 650px;
+            height: 650px;
+            background: linear-gradient(90deg, var(--gradient-5-start), var(--gradient-5-end));
+            bottom: -10%;
+            left: 20%;
+            animation-delay: 9s;
+        }
 
-    10% {
-     opacity: 0.7;
-    }
 
-    90% {
-     opacity: 0.7;
-    }
+        @keyframes floatEffect {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.08;
+            }
 
-    100% {
-     opacity: 0;
-    }
-   }
+            25% {
+                transform: translate(40px, 50px) scale(1.02);
+                opacity: 0.1;
+            }
 
-   /* Header Styles */
-   header {
-    background: linear-gradient(135deg, var(--gradient-1-start), var(--gradient-1-end));
-    color: var(--text-light);
-    padding: 2rem 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-   }
+            50% {
+                transform: translate(-30px, -40px) scale(0.98);
+                opacity: 0.08;
+            }
 
-   header h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    font-weight: 800;
-   }
+            75% {
+                transform: translate(50px, -30px) scale(1.03);
+                opacity: 0.1;
+            }
 
-   header p {
-    font-size: 1.2rem;
-    font-weight: 300;
-   }
+            100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.08;
+            }
+        }
 
-   /* Navigation Styles */
-   nav {
-    background: var(--bg-medium);
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-   }
+        /* --- Animated Stars & Circles (New Elements) --- */
+        .interactive-element {
+            position: fixed;
+            background-color: rgba(255, 255, 255, 0.6); /* Slightly visible white */
+            z-index: -1;
+            animation: moveAround 15s infinite ease-in-out alternate;
+            opacity: 0; /* Start invisible */
+            transition: opacity 1s ease-in-out; /* Fade in animation */
+        }
 
-   nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   }
+        .interactive-element.visible {
+            opacity: 0.05; /* Becomes slightly visible */
+        }
 
-   nav ul li {
-    margin: 0 1.5rem;
-   }
+        .interactive-circle {
+            border-radius: 50%;
+            filter: blur(10px); /* Soft blur for circles */
+            background-color: rgba(255, 255, 255, 0.4); /* Subtler white for circles */
+        }
 
-   nav ul li a {
-    color: var(--text-dark);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-   }
+        .interactive-star {
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            background-color: rgba(255, 255, 255, 0.7); /* Brighter white for stars */
+            filter: blur(1px); /* Less blur for stars to keep shape */
+        }
 
-   nav ul li a:hover {
-    color: var(--gradient-1-end);
-   }
+        /* Define specific positions and sizes for interactive elements */
+        .interactive-element:nth-child(6) { /* First interactive element (e.g., small circle) */
+            width: 30px;
+            height: 30px;
+            top: 20%;
+            left: 5%;
+            animation-delay: 1s;
+        }
 
-   /* Section Styles */
-   section {
-    padding: 4rem 2rem;
-    background: var(--bg-medium);
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    border-radius: 8px;
-   }
+        .interactive-element:nth-child(7) { /* Second interactive element (e.g., star) */
+            width: 20px;
+            height: 20px;
+            top: 80%;
+            right: 10%;
+            animation-delay: 5s;
+        }
 
-   section h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-dark);
-    /* Dark for all headings */
-    border-bottom: 3px solid var(--gradient-1-end);
-    padding-bottom: 0.5rem;
-   }
+        .interactive-element:nth-child(8) { /* Third interactive element (e.g., medium circle) */
+            width: 50px;
+            height: 50px;
+            bottom: 15%;
+            left: 30%;
+            animation-delay: 9s;
+        }
 
-   /* About Section */
-   #about p {
-    font-size: 1.1rem;
-    color: var(--text-medium);
-   }
+        .interactive-element:nth-child(9) { /* Fourth interactive element (e.g., star) */
+            width: 25px;
+            height: 25px;
+            top: 5%;
+            right: 40%;
+            animation-delay: 3s;
+        }
 
-   /* Skills Section */
-   #skills ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-   }
+        .interactive-element:nth-child(10) { /* Fifth interactive element (e.g., small circle) */
+            width: 35px;
+            height: 35px;
+            top: 60%;
+            left: 15%;
+            animation-delay: 7s;
+        }
 
-   #skills ul li {
-    background: rgba(var(--gradient-1-start), 0.05);
-    /* Soft background */
-    color: var(--text-medium);
-    margin: 0.5rem;
-    padding: 0.75rem 1.25rem;
-    border-radius: 20px;
-    box-shadow: 0 1px 3px var(--shadow-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-   }
+        @keyframes moveAround {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translate(30px, -20px) rotate(45deg) scale(1.05);
+            }
+            50% {
+                transform: translate(-40px, 50px) rotate(90deg) scale(0.95);
+            }
+            75% {
+                transform: translate(20px, -30px) rotate(135deg) scale(1.1);
+            }
+            100% {
+                transform: translate(0, 0) rotate(180deg) scale(1);
+            }
+        }
 
-   #skills ul li:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 6px var(--shadow-color);
-   }
 
-   /* Projects Section */
-   #projects .project {
-    border-bottom: 1px solid var(--border-light);
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
-   }
+        /* --- Header & Navigation --- */
+        header {
+            padding: 3rem 1.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            background-color: var(--bg-medium);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
 
-   #projects .project:last-child {
-    border-bottom: none;
-   }
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            /* Make heading black */
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+            text-shadow: none;
+        }
 
-   #projects .project h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-dark);
-   }
+        header p {
+            font-size: 1.5rem;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
 
-   #projects .project p {
-    font-size: 1rem;
-    color: var(--text-medium);
-    margin-bottom: 1rem;
-   }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
 
-   #projects .project a {
-    color: var(--gradient-1-end);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-   }
+        /* --- Consistent Nav CTA Styling --- */
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-   #projects .project a:hover {
-    color: var(--gradient-1-start);
-   }
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gradient-1-start), var(--gradient-2-end));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-   /* Contact Section */
-   #contact p {
-    font-size: 1.1rem;
-    color: var(--text-medium);
-    margin-bottom: 1.5rem;
-   }
+        nav a:hover {
+            color: var(--text-dark);
+            /* Keep text dark on hover */
+            transform: translateY(-3px);
+            background-color: rgba(0, 0, 0, 0.05);
+            /* Subtle hover background */
+        }
 
-   #contact ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-   }
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
 
-   #contact ul li {
-    margin: 0 1rem;
-   }
+        /* --- Sections --- */
+        section {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background-color: var(--bg-medium);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
 
-   #contact ul li a {
-    color: var(--text-dark);
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
-   }
+        section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
 
-   #contact ul li a:hover {
-    color: var(--gradient-1-end);
-   }
+        section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            /* Make heading black */
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
 
-   /* Footer Styles */
-   footer {
-    background: var(--bg-light);
-    /* Match body background */
-    color: var(--text-medium);
-    /* Secondary text color */
-    text-align: center;
-    padding: 1rem 0;
-    border-top: 1px solid var(--border-light);
-    /* Light border for subtle separation */
-   }
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gradient-1-start), var(--gradient-2-end));
+            /* Using new gradient colors */
+            border-radius: 2px;
+        }
 
-   /* Responsive Design */
-   @media (max-width: 768px) {
-    header h1 {
-     font-size: 2rem;
-    }
+        section p {
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            font-weight: normal;
+        }
 
-    nav ul {
-     flex-direction: column;
-    }
+        section p strong {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
 
-    nav ul li {
-     margin: 0.75rem 0;
-    }
+        /* Project Section */
+        #projects .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
 
-    section {
-     padding: 3rem 1rem;
-    }
+        .project-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
 
-    #skills ul {
-     flex-direction: column;
-     align-items: center;
-    }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gradient-3-start), var(--gradient-4-end));
+            /* Using new gradient colors */
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-    #contact ul {
-     flex-direction: column;
-     align-items: center;
-    }
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
 
-    #contact ul li {
-     margin: 0.5rem 0;
-    }
-   }
-  </style>
- </head>
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: rgba(0, 0, 0, 0.2);
+            background: #fdfdfd; /* A slightly brighter background on hover */
+        }
 
- <body>
-  <div id="interactive-bg"></div>
+        .project-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            /* Make heading black */
+            color: var(--text-dark);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
 
-  <header>
-   <h1>Upasana Arora</h1>
-   <p>Product Manager | Driving Innovation</p>
-  </header>
+        .project-card p {
+            font-size: 1rem;
+            color: var(--text-medium);
+            text-align: left;
+            margin-bottom: 1.5rem;
+            font-weight: normal;
+        }
 
-  <nav>
-   <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-   </ul>
-  </nav>
+        .project-card p strong {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
 
-  <section id="about">
-   <h2>About Me</h2>
-   <p>
-    I am a passionate Product Manager with 5+ years of experience in leading
-    cross-functional teams to deliver innovative and impactful products. My
-    expertise lies in understanding user needs, defining product vision, and
-    executing strategies that drive growth and customer satisfaction.
-   </p>
-  </section>
+        .project-card .tags {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
 
-  <section id="skills">
-   <h2>Skills</h2>
-   <ul>
-    <li>Product Strategy</li>
-    <li>User Research</li>
-    <li>Agile Methodology</li>
-    <li>Data Analysis</li>
-    <li>Market Analysis</li>
-    <li>Team Leadership</li>
-    <li>Communication</li>
-    <li>Problem-Solving</li>
-   </ul>
-  </section>
+        .project-card .tag {
+            display: inline-block;
+            background-color: rgba(155, 89, 182, 0.1);
+            color: var(--text-dark);
+            /* Changed tag text to dark for consistency */
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
 
-  <section id="projects">
-   <h2>Projects</h2>
-   <div class="project">
-    <h3>Project Title 1</h3>
-    <p>
-     Brief description of the project and my role. Highlight key
-     achievements and outcomes.
-    </p>
-    <a href="#">Learn More</a>
-   </div>
-   <div class="project">
-    <h3>Project Title 2</h3>
-    <p>
-     Brief description of the project and my role. Highlight key
-     achievements and outcomes.
-    </p>
-    <a href="#">Learn More</a>
-   </div>
-   </section>
+        /* --- Consistent Project Link CTA Styling --- */
+        .project-card .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            color: var(--text-dark);
+            /* Changed link color to dark for consistency */
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 0;
+            transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+            border-radius: 5px;
+        }
 
-  <section id="contact">
-   <h2>Contact</h2>
-   <p>
-    I'm always open to new opportunities and collaborations. Feel free to
-    reach out!
-   </p>
-   <ul>
-    <li>
-     <a href="#"><i class="fab fa-linkedin"></i></a>
-    </li>
-    <li>
-     <a href="#"><i class="fas fa-envelope"></i></a>
-    </li>
-    <li>
-     <a href="#"><i class="fab fa-github"></i></a>
-    </li>
-   </ul>
-  </section>
+        .project-card .project-link:hover {
+            color: var(--text-dark);
+            /* Keep text dark on hover */
+            transform: translateX(5px);
+            background-color: rgba(0, 0, 0, 0.05);
+            /* Subtle hover background */
+        }
 
-  <footer>
-   <p>&copy; 2024 Upasana Arora. All rights reserved.</p>
-  </footer>
+        /* Experience Section */
+        #experience ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 2rem;
+        }
 
-  <script>
-   document.addEventListener('DOMContentLoaded', function () {
-    const bg = document.getElementById('interactive-bg');
+        #experience ul li {
+            background: var(--bg-light);
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            position: relative;
+            padding-left: 2.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border-left: 5px solid var(--gradient-3-start);
+            /* Using new gradient color for border */
+            color: var(--text-medium);
+            font-weight: normal;
+        }
 
-    function createParticle(type) {
-     const particle = document.createElement('div');
-     particle.className = type;
-     particle.style.left = `${Math.random() * 100}vw`;
-     particle.style.top = `${Math.random() * 100}vh`;
-     particle.style.animationDelay = `${Math.random() * 4}s`;
-     bg.appendChild(particle);
+        #experience ul li strong {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
 
-     // Remove particle after animation completes
-     particle.addEventListener('animationiteration', () => {
-      particle.remove();
-      // Re-create the particle to maintain a continuous effect
-      createParticle(type);
-     });
-    }
+        #experience ul li:hover {
+            background-color: #f0f0f0;
+            transform: translateX(5px);
+        }
 
-    // Create initial particles
-    for (let i = 0; i < 20; i++) {
-     createParticle(Math.random() > 0.5 ? 'star' : 'circle');
-    }
-   });
-  </script>
- </body>
+        #experience ul li::before {
+            content: '\2022';
+            font-size: 1.8rem;
+            color: var(--gradient-1-start);
+            /* Using new gradient color for bullet */
+            position: absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            line-height: 1;
+        }
 
- </html>
+        /* Testimonials Section */
+        .testimonial {
+            margin-bottom: 2rem;
+            background: var(--bg-light);
+            padding: 2rem;
+            border-left: 5px solid var(--gradient-2-start);
+            /* Using new gradient color for border */
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateX(8px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            color: var(--text-medium);
+            text-align: left;
+            margin-bottom: 1rem;
+            font-weight: normal;
+        }
+
+        .testimonial p strong {
+            display: block;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-style: normal;
+            font-size: 1.1rem;
+        }
+
+        /* --- Call to Action Button (Unified Styling) --- */
+        .button-group {
+            text-align: center;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2.2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.4s ease-in-out;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            /* Default primary button style */
+            background: linear-gradient(45deg, var(--gradient-1-start), var(--gradient-1-end));
+            /* Using new gradient colors */
+            color: var(--text-light);
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .button:hover::before {
+            left: 100%;
+        }
+
+        .button:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            background: linear-gradient(45deg, var(--gradient-2-start), var(--gradient-3-end));
+            /* New gradient on hover */
+        }
+
+        .button.secondary {
+            background: var(--bg-light);
+            border: 2px solid var(--gradient-4-start);
+            /* Using new gradient color for border */
+            color: var(--text-dark);
+            /* Secondary button text is dark */
+            box-shadow: none;
+        }
+
+        .button.secondary:hover {
+            background: var(--gradient-4-start);
+            /* New gradient on hover */
+            color: var(--text-light);
+            border-color: var(--gradient-4-start);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            /* Adjusted shadow */
+            transform: translateY(-5px) scale(1.02);
+        }
+
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background-color: var(--bg-medium);
+            color: var(--text-medium);
+            margin-top: 5rem;
+            border-top: 1px solid var(--border-light);
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: var(--text-dark);
+            /* Footer links are dark */
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--gradient-1-start);
+            /* New gradient color on hover */
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons a {
+            color: var(--text-dark);
+            font-size: 2rem;
+            margin: 0 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--gradient-5-start);
+            /* New gradient color on hover */
+            transform: scale(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            section {
+                margin: 3rem auto;
+                padding: 2.5rem;
+            }
+
+            section h2 {
+                font-size: 2.2rem;
+            }
+
+            header h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.8rem;
+            }
+
+            header p {
+                font-size: 1.2rem;
+            }
+
+            nav {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 2rem;
+                margin: 2rem auto;
+            }
+
+            section h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .button {
+                width: 80%;
+                max-width: 300px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .bg-gradient-blob {
+                filter: blur(100px);
+                /* Reduce blur on mobile for performance */
+                opacity: 0.05;
+                /* Even more subtle on mobile */
+            }
+
+            .blob-1,
+            .blob-2,
+            .blob-3,
+            .blob-4,
+            .blob-5 {
+                width: 250px;
+                height: 250px;
+            }
+
+            .interactive-element {
+                filter: blur(5px);
+                /* Reduce blur for interactive elements on mobile */
+                opacity: 0.03 !important; /* Make them even more subtle */
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 2rem 1rem;
+            }
+
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.6rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .project-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .project-card .tag {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-gradient-blob blob-1"></div>
+    <div class="bg-gradient-blob blob-2"></div>
+    <div class="bg-gradient-blob blob-3"></div>
+    <div class="bg-gradient-blob blob-4"></div>
+    <div class="bg-gradient-blob blob-5"></div>
+
+    <div class="interactive-element interactive-circle"></div>
+    <div class="interactive-element interactive-star"></div>
+    <div class="interactive-element interactive-circle"></div>
+    <div class="interactive-element interactive-star"></div>
+    <div class="interactive-element interactive-circle"></div>
+
+    <header>
+        <h1>Upasana Arora</h1>
+        <p>Product Manager | Innovator | Problem Solver</p>
+        <nav>
+            <a href="#profile">About Me</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="profile">
+        <h2>About Me</h2>
+        <p>I am a passionate Product Manager with a robust background in engineering and a proven track record of delivering impactful results. My expertise lies in transforming complex challenges into intuitive, user-centric product solutions. At Testbook, I successfully spearheaded critical product features, always prioritizing user experience, data-driven outcomes, and operational excellence. My core mission is to continue building products that truly solve real-world problems, blending creativity with analytical rigor to create meaningful impact.</p>
+        <p>I thrive in dynamic environments where cross-functional collaboration is key to success. I am adept at bridging the gap between technical teams, business stakeholders, and end-users, ensuring that product roadmaps are clear, well-executed, and aligned with strategic goals.</p>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects & Highlights</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Banking Category Launch</h3>
+                <p>Led the launch of a new Banking exam preparation category, securing 1300+ signups in the first month and contributing to a 12% revenue boost for the platform.</p>
+                <div class="tags">
+                    <span class="tag">Product Launch</span>
+                    <span class="tag">Market Expansion</span>
+                    <span class="tag">Revenue Growth</span>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1Y9FCR_X5i5eZyZxSkYoN_m0YGfgQTh7L?usp=sharing" target="_blank" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="project-card">
+                <h3>Automated Assignment Evaluation</h3>
+                <p>Designed and implemented a system for automated assignment evaluation, leading to a remarkable 96% reduction in stakeholder time previously spent on manual grading.</p>
+                <div class="tags">
+                    <span class="tag">Process Automation</span>
+                    <span class="tag">Operational Efficiency</span>
+                    <span class="tag">System Design</span>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1Y9FCR_X5i5eZyZxSkYoN_m0YGfgQTh7L?usp=sharing" target="_blank" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="project-card">
+                <h3>App Download Growth Initiative</h3>
+                <p>Collaborated cross-functionally to strategize and execute initiatives that resulted in a 9% increase in app downloads over two quarters.</p>
+                <div class="tags">
+                    <span class="tag">Growth Strategy</span>
+                    <span class="tag">User Acquisition</span>
+                    <span class="tag">Cross-functional</span>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1Y9FCR_X5i5eZyZxSkYoN_m0YGfgQTh7L?usp=sharing" target="_blank" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="project-card">
+                <h3>Lead Ingestion Flow Optimization</h3>
+                <p>Redesigned the lead ingestion flow, which led to an 18% increase in conversions for targeted products.</p>
+                <div class="tags">
+                    <span class="tag">Conversion Optimization</span>
+                    <span class="tag">UX Design</span>
+                    <span class="tag">Lead Management</span>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1Y9FCR_X5i5eZyZxSkYoN_m0YGfgQTh7L?usp=sharing" target="_blank" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <div class="button-group">
+            <a href="https://drive.google.com/drive/folders/1Y9FCR_X5i5eZyZxSkYoN_m0YGfgQTh7L?usp=sharing" target="_blank" class="button">View All Projects <i class="fas fa-external-link-alt"></i></a>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Product Manager at Testbook (Key Contributions)</h2>
+        <ul>
+            <li>Launched new Banking category: Achieved 1300+ signups in month one, driving a 12% revenue boost.</li>
+            <li>Automated assignment evaluation: Delivered a 96% reduction in stakeholder time and effort.</li>
+            <li>Boosted app downloads by 9% in 2 quarters through strategic cross-functional collaboration.</li>
+            <li>Designed and optimized lead ingestion flow: Resulted in an 18% increase in targeted product conversions.</li>
+            <li>Coordinated product implementation at engineering facilities, ensuring seamless rollout via site visits and proactive stakeholder alignment.</li>
+            <li>Spearheaded A/B testing initiatives to optimize user flows and feature adoption.</li>
+            <li>Conducted market research and competitive analysis to identify new opportunities and inform product strategy.</li>
+        </ul>
+    </section>
+
+    <section id="testimonials">
+        <h2>What Others Say About My Work</h2>
+        <div class="testimonial">
+            <p>"Upasana quickly rose to independently lead features within months of joining. Her user-focused problem-solving, proactive collaboration with tech teams, and results-oriented approach made her an invaluable asset. I highly recommend her!"</p>
+            <p>
+                — <strong>Sourabh Kabra</strong> – Assistant Vice President, Product Management at Testbook
+            </p>
+        </div>
+        <div class="testimonial">
+            <p>"Her writing was refreshing and versatile. She consistently met deadlines, took feedback well, and showed strong adaptability across content formats. A smart and capable contributor to any team."</p>
+            <p>
+                — <strong>Supreeta Balasubramanian</strong> – Editor at Bzaar
+            </p>
+        </div>
+        <div class="testimonial">
+            <p>"Upasana was punctual, dedicated, and balanced multiple projects with ease. Her writing and organizational skills made a dramatic impact on team productivity. Highly recommended for any writing/editing role."</p>
+            <p>
+                — <strong>Hayaa Fathima</strong> – Social Media Strategist
+            </p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Let's Connect & Build the Future</h2>
+        <p>I am currently seeking exciting Product or Project Management roles in the UK, with availability starting from September 2025. I am deeply passionate about contributing to organizations that foster a healthy work culture, prioritize meaningful innovation, and offer ample opportunities to create lasting impact.</p>
+        <p>If you are looking for a dedicated, user-focused, and results-driven Product Manager, I would love to hear from you!</p>
+        <div class="button-group">
+            <a href="mailto:upasana.arora212@gmail.com" class="button secondary">Email Me <i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/aroraupasana/" target="_blank" class="button">Connect on LinkedIn <i class="fab fa-linkedin"></i></a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Upasana Arora. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/aroraupasana/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:upasana.arora212@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>Contact: 07901859997</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script>
+        // JavaScript to gradually fade in interactive elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const interactiveElements = document.querySelectorAll('.interactive-element');
+            interactiveElements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.classList.add('visible');
+                }, index * 500); // Stagger the fade-in
+            });
+        });
+    </script>
+</body>
+
+</html>
