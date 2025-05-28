@@ -15,19 +15,13 @@
       --bg-medium: #ffffff;
       /* Card/section background */
       --text-dark: #333333;
-      /* Main dark text (now for headings too) */
+      /* Main dark text (now for all headings) */
       --text-medium: #555555;
       /* Secondary text */
       --text-light: #ffffff;
       /* For light text on dark buttons */
-      --accent-purple: #9b59b6;
-      /* For gradients and accents */
-      --accent-green: #2ecc71;
-      /* For gradients and accents */
-      --accent-blue: #3498db;
-      /* For gradients and accents */
 
-      /* More diffused gradient colors for blobs */
+      /* More diffused gradient colors for blobs, inspired by Sam Dickie */
       --gradient-1-start: #ff7e5f;
       --gradient-1-end: #feb47b;
       --gradient-2-start: #83a4d4;
@@ -65,11 +59,11 @@
       /* For background elements positioning */
     }
 
-    /* --- Animated Background Elements (Blobs) --- */
+    /* --- Animated Background Elements (Blobs - now more like Sam Dickie's circles) --- */
     .bg-gradient-blob {
       position: fixed;
       border-radius: 50%;
-      /* Larger blur for more diffusion like Sam Dickie */
+      /* Much larger blur for more diffusion */
       filter: blur(250px);
       /* Much lower opacity for subtlety */
       opacity: 0.08;
@@ -168,7 +162,7 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 4.5rem;
       font-weight: 800;
-      /* Black color for heading */
+      /* Make heading black */
       color: var(--text-dark);
       margin-bottom: 0.5rem;
       line-height: 1.1;
@@ -209,16 +203,16 @@
       bottom: 0;
       width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, var(--accent-purple), var(--accent-green));
+      background: linear-gradient(90deg, var(--gradient-1-start), var(--gradient-2-end));
       transform: scaleX(0);
       transform-origin: right;
       transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     nav a:hover {
-      color: var(--accent-green);
+      color: var(--text-dark); /* Keep text dark on hover */
       transform: translateY(-3px);
-      background-color: rgba(46, 204, 113, 0.1);
+      background-color: rgba(0, 0, 0, 0.05); /* Subtle hover background */
     }
 
     nav a:hover::after {
@@ -249,7 +243,7 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 2.8rem;
       font-weight: 700;
-      /* Black color for heading */
+      /* Make heading black */
       color: var(--text-dark);
       margin-bottom: 2rem;
       text-align: center;
@@ -264,7 +258,7 @@
       transform: translateX(-50%);
       width: 80px;
       height: 4px;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+      background: linear-gradient(90deg, var(--gradient-1-start), var(--gradient-2-end)); /* Using new gradient colors */
       border-radius: 2px;
     }
 
@@ -310,7 +304,7 @@
       left: 0;
       width: 100%;
       height: 5px;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+      background: linear-gradient(90deg, var(--gradient-3-start), var(--gradient-4-end)); /* Using new gradient colors */
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -328,7 +322,7 @@
 
     .project-card h3 {
       font-family: 'Montserrat', sans-serif;
-      /* Black color for heading */
+      /* Make heading black */
       color: var(--text-dark);
       font-size: 1.8rem;
       font-weight: 700;
@@ -358,7 +352,7 @@
     .project-card .tag {
       display: inline-block;
       background-color: rgba(155, 89, 182, 0.1);
-      color: var(--accent-purple);
+      color: var(--text-dark); /* Changed tag text to dark for consistency */
       padding: 0.4rem 1rem;
       border-radius: 20px;
       font-size: 0.85rem;
@@ -371,7 +365,7 @@
       align-items: center;
       gap: 0.5rem;
       margin-top: 1.5rem;
-      color: var(--accent-blue);
+      color: var(--text-dark); /* Changed link color to dark for consistency */
       text-decoration: none;
       font-weight: 600;
       padding: 8px 0;
@@ -380,9 +374,9 @@
     }
 
     .project-card .project-link:hover {
-      color: var(--accent-green);
+      color: var(--text-dark); /* Keep text dark on hover */
       transform: translateX(5px);
-      background-color: rgba(52, 152, 219, 0.05);
+      background-color: rgba(0, 0, 0, 0.05); /* Subtle hover background */
     }
 
     /* Experience Section */
@@ -401,7 +395,7 @@
       padding-left: 2.5rem;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
       transition: background-color 0.3s ease, transform 0.3s ease;
-      border-left: 5px solid var(--accent-green);
+      border-left: 5px solid var(--gradient-3-start); /* Using new gradient color for border */
       color: var(--text-medium);
       font-weight: normal;
     }
@@ -419,7 +413,7 @@
     #experience ul li::before {
       content: '\2022';
       font-size: 1.8rem;
-      color: var(--accent-purple);
+      color: var(--gradient-1-start); /* Using new gradient color for bullet */
       position: absolute;
       left: 0.8rem;
       top: 50%;
@@ -432,7 +426,7 @@
       margin-bottom: 2rem;
       background: var(--bg-light);
       padding: 2rem;
-      border-left: 5px solid var(--accent-blue);
+      border-left: 5px solid var(--gradient-2-start); /* Using new gradient color for border */
       border-radius: 10px;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
       position: relative;
@@ -488,7 +482,7 @@
       position: relative;
       overflow: hidden;
       /* Default primary button style */
-      background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+      background: linear-gradient(45deg, var(--gradient-1-start), var(--gradient-1-end)); /* Using new gradient colors */
       color: var(--text-light);
     }
 
@@ -510,22 +504,22 @@
     .button:hover {
       transform: translateY(-5px) scale(1.02);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-      background: linear-gradient(45deg, var(--accent-blue), var(--accent-green));
+      background: linear-gradient(45deg, var(--gradient-2-start), var(--gradient-3-end)); /* New gradient on hover */
     }
 
     .button.secondary {
       background: var(--bg-light);
-      border: 2px solid var(--accent-green);
-      color: var(--accent-green);
+      border: 2px solid var(--gradient-4-start); /* Using new gradient color for border */
+      color: var(--text-dark); /* Secondary button text is dark */
       box-shadow: none;
     }
 
     .button.secondary:hover {
-      background: var(--accent-green);
+      background: var(--gradient-4-start); /* New gradient on hover */
       color: var(--text-light);
-      border-color: var(--accent-green);
-      box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
-      transform: translateY(-5px) scale(1.02); /* Ensured consistent hover effect */
+      border-color: var(--gradient-4-start);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Adjusted shadow */
+      transform: translateY(-5px) scale(1.02);
     }
 
 
@@ -546,14 +540,14 @@
     }
 
     footer a {
-      color: var(--accent-blue);
+      color: var(--text-dark); /* Footer links are dark */
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease;
     }
 
     footer a:hover {
-      color: var(--accent-green);
+      color: var(--gradient-1-start); /* New gradient color on hover */
       text-decoration: underline;
     }
 
@@ -570,7 +564,7 @@
     }
 
     .social-icons a:hover {
-      color: var(--accent-purple);
+      color: var(--gradient-5-start); /* New gradient color on hover */
       transform: scale(1.2);
     }
 
@@ -634,11 +628,17 @@
       }
 
       .bg-gradient-blob {
-        filter: blur(100px); /* Reduce blur on mobile for performance */
-        opacity: 0.05; /* Even more subtle on mobile */
+        filter: blur(100px);
+        /* Reduce blur on mobile for performance */
+        opacity: 0.05;
+        /* Even more subtle on mobile */
       }
 
-      .blob-1, .blob-2, .blob-3, .blob-4, .blob-5 {
+      .blob-1,
+      .blob-2,
+      .blob-3,
+      .blob-4,
+      .blob-5 {
         width: 250px;
         height: 250px;
       }
