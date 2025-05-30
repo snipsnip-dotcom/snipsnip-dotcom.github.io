@@ -18,6 +18,84 @@
             background: #f8f8f8;
             overflow-x: hidden;
             position: relative;
+            padding-top: 60px; /* Space for fixed navbar */
+        }
+
+        /* Dynamic Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .navbar-nav {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: color 0.3s ease, transform 0.3s ease;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 4px 0;
+            transition: 0.4s;
         }
 
         /* Animated Background Elements */
@@ -276,19 +354,81 @@
             width: 100px;
         }
 
+        /* Contribution section specific styling */
+        .contribution-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .contribution-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .achievements-list {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr; /* Single column by default */
+            gap: 15px;
+        }
+
         .achievement {
-            margin-bottom: 15px;
+            margin-bottom: 0; /* Reset margin from previous rule */
             padding: 15px;
             background: #f8f9fa;
             border-left: 4px solid #3498db;
             border-radius: 5px;
             transition: all 0.3s ease;
+            position: relative; /* For absolute positioning of popup */
+            overflow: hidden; /* Hide overflow from popup */
+            cursor: pointer;
         }
 
         .achievement:hover {
             background: #e3f2fd;
             transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15); /* More pronounced shadow on hover */
         }
+
+        .achievement-popup {
+            position: absolute;
+            top: 0;
+            left: 100%; /* Position to the right of the achievement */
+            width: 250px; /* Width of the popup */
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(20px); /* Start slightly to the right */
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            z-index: 10;
+            white-space: normal; /* Allow text to wrap */
+        }
+
+        .achievement:hover .achievement-popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0); /* Slide into view */
+        }
+
+        /* Adjust popup position for achievements near the right edge */
+        .achievement:nth-child(odd):hover .achievement-popup {
+            left: auto;
+            right: 100%; /* Position to the left */
+            transform: translateX(-20px);
+        }
+
+        .achievement:nth-child(odd):hover .achievement-popup {
+            transform: translateX(0); /* Slide into view from left */
+        }
+
 
         .testimonial {
             background: #f8f9fa;
@@ -336,12 +476,33 @@
             border: 1px solid #e9ecef;
             transition: all 0.3s ease;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             background: #ffffff;
+        }
+
+        .project-image-placeholder {
+            width: 100%;
+            height: 180px; /* Adjust height as needed */
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #666;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* Example placeholder image - replace with your actual image */
+            background-image: url('https://placehold.co/400x180/cccccc/333333?text=Project+Image'); 
         }
 
         .project-card h3 {
@@ -355,6 +516,7 @@
             color: #666;
             line-height: 1.6;
             margin-bottom: 20px;
+            flex-grow: 1; /* Allow paragraph to take available space */
         }
 
         .project-tags {
@@ -378,6 +540,7 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+            margin-top: auto; /* Push link to the bottom */
         }
 
         .project-link:hover {
@@ -473,6 +636,37 @@
 
         /* Mobile responsiveness */
         @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 15px;
+            }
+
+            .navbar-brand {
+                margin-bottom: 10px;
+            }
+
+            .navbar-nav {
+                flex-direction: column;
+                width: 100%;
+                display: none; /* Hidden by default on mobile */
+            }
+
+            .navbar-nav.nav-active {
+                display: flex; /* Show when active */
+            }
+
+            .nav-item {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+
             .container {
                 padding: 20px 15px;
             }
@@ -483,6 +677,24 @@
             
             .section {
                 padding: 20px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                margin: 20px auto 0; /* Center image on mobile */
+            }
+
+            .achievement-popup {
+                position: static; /* Stack on mobile */
+                width: auto;
+                transform: none;
+                margin-top: 10px;
+                box-shadow: none;
+                border: none;
+                background: #f0f0f0; /* Slightly different background for clarity */
             }
         }
 
@@ -503,12 +715,46 @@
             0% { transform: translateY(100vh) rotate(0deg); }
             100% { transform: translateY(-100px) rotate(360deg); }
         }
+
+        /* About Me section with image */
+        .about-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex-shrink: 0;
+            width: 200px; /* Adjust size as needed */
+            height: 200px; /* Adjust size as needed */
+            border-radius: 10px; /* Rounded corners for the image */
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid #3498db; /* A subtle border */
+        }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
+    <nav class="navbar">
+        <a href="#home" class="navbar-brand">😊</a> <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar-nav" id="nav-links">
+            <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#achievements" class="nav-link">Achievements</a></li>
+            <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+            <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
+            <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
     <div class="bg-animation">
-        <!-- Floating geometric elements -->
         <div class="floating-element circle" style="width: 50px; height: 50px; top: 10%; left: 85%; animation-delay: 0s;"></div>
         <div class="floating-element circle" style="width: 30px; height: 30px; top: 70%; left: 5%; animation-delay: 5s;"></div>
         <div class="floating-element circle" style="width: 40px; height: 40px; top: 30%; left: 10%; animation-delay: 10s;"></div>
@@ -522,27 +768,22 @@
         <div class="floating-element star" style="top: 15%; left: 70%; animation-delay: 18s;"></div>
         <div class="floating-element star" style="top: 90%; left: 40%; animation-delay: 22s;"></div>
         
-        <!-- Hexagons -->
         <div class="floating-element hexagon" style="top: 25%; left: 80%; animation-delay: 4s;"></div>
         <div class="floating-element hexagon" style="top: 65%; left: 20%; animation-delay: 14s;"></div>
         <div class="floating-element hexagon" style="top: 45%; left: 5%; animation-delay: 24s;"></div>
         
-        <!-- Triangles -->
         <div class="floating-element triangle" style="top: 35%; left: 85%; animation-delay: 7s;"></div>
         <div class="floating-element triangle" style="top: 75%; left: 10%; animation-delay: 17s;"></div>
         <div class="floating-element triangle" style="top: 55%; left: 95%; animation-delay: 27s;"></div>
         
-        <!-- Squares -->
         <div class="floating-element square" style="top: 12%; left: 40%; animation-delay: 9s;"></div>
         <div class="floating-element square" style="top: 82%; left: 60%; animation-delay: 19s;"></div>
         <div class="floating-element square" style="top: 38%; left: 25%; animation-delay: 29s;"></div>
         
-        <!-- Plus signs -->
         <div class="floating-element plus" style="top: 28%; left: 50%; animation-delay: 11s;"></div>
         <div class="floating-element plus" style="top: 68%; left: 70%; animation-delay: 21s;"></div>
         <div class="floating-element plus" style="top: 88%; left: 85%; animation-delay: 31s;"></div>
         
-        <!-- Floating particles -->
         <div class="particle particle-1" style="left: 10%; animation-delay: 0s;"></div>
         <div class="particle particle-2" style="left: 30%; animation-delay: 5s;"></div>
         <div class="particle particle-3" style="left: 50%; animation-delay: 10s;"></div>
@@ -552,45 +793,68 @@
         <div class="particle particle-1" style="left: 60%; animation-delay: 30s;"></div>
         <div class="particle particle-2" style="left: 80%; animation-delay: 35s;"></div>
         
-        <!-- Dots pattern -->
         <div class="dot-pattern" style="top: 20%; left: 30%;"></div>
         <div class="dot-pattern" style="top: 60%; left: 80%;"></div>
         <div class="dot-pattern" style="top: 80%; left: 20%;"></div>
     </div>
 
     <div class="container">
-        <header class="header">
+        <header class="header" id="home">
             <h1>Upasana Arora</h1>
             <p>Product Manager | Innovator | Problem Solver</p>
         </header>
 
-        <section class="section">
+        <section class="section" id="about">
             <h2>About Me</h2>
-            <p>I am a passionate Product Manager with a robust background in engineering and a proven track record of delivering impactful results. My expertise lies in transforming complex challenges into intuitive, user-centric product solutions. At Testbook, I successfully spearheaded critical product features, always prioritizing user experience, data-driven outcomes, and operational excellence. My core mission is to continue building products that truly solve real-world problems, blending creativity with analytical rigor to create meaningful impact.</p>
-            <br>
-            <p>I thrive in dynamic environments where cross-functional collaboration is key to success. I am adept at bridging the gap between technical teams, business stakeholders, and end-users, ensuring that product roadmaps are clear, well-executed, and aligned with strategic goals.</p>
-        </section>
-
-        <section class="section">
-            <h2>Key Achievements</h2>
-            <div class="achievement">
-                <strong>Banking Exam Launch:</strong> Led the launch of a new Banking exam preparation category, securing 1300+ signups in the first month and contributing to a 12% revenue boost for the platform.
-            </div>
-            <div class="achievement">
-                <strong>Automation Success:</strong> Designed and implemented a system for automated assignment evaluation, leading to a remarkable 96% reduction in stakeholder time previously spent on manual grading.
-            </div>
-            <div class="achievement">
-                <strong>Growth Initiative:</strong> Collaborated cross-functionally to strategize and execute initiatives that resulted in a 9% increase in app downloads over two quarters.
-            </div>
-            <div class="achievement">
-                <strong>Conversion Optimization:</strong> Redesigned the lead ingestion flow, which led to an 18% increase in conversions for targeted products.
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am a passionate Product Manager with a robust background in engineering and a proven track record of delivering impactful results. My expertise lies in transforming complex challenges into intuitive, user-centric product solutions. At Testbook, I successfully spearheaded critical product features, always prioritizing user experience, data-driven outcomes, and operational excellence. My core mission is to continue building products that truly solve real-world problems, blending creativity with analytical rigor to create meaningful impact.</p>
+                    <br>
+                    <p>I thrive in dynamic environments where cross-functional collaboration is key to success. I am adept at bridging the gap between technical teams, business stakeholders, and end-users, ensuring that product roadmaps are clear, well-executed, and aligned with strategic goals.</p>
+                </div>
+                <img src="Screenshot 2025-05-28 at 7.05.09 PM.jpg-f6bd991e-e2dd-401f-8055-809a7c50ab9c" alt="Upasana Arora" class="about-image" onerror="this.onerror=null; this.src='https://placehold.co/200x200/cccccc/333333?text=Image+Error'; console.error('Failed to load image: Screenshot 2025-05-28 at 7.05.09 PM.jpg');">
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="achievements">
+            <h2>Contribution as a Product Manager</h2>
+            <div class="contribution-content">
+                <img src="Documentation.png-a6f7ee15-6701-465e-aa37-5e0211f3108b" alt="Product Management Contributions" class="contribution-image" onerror="this.onerror=null; this.src='https://placehold.co/600x300/cccccc/333333?text=Image+Error'; console.error('Failed to load image: Documentation.png');">
+                <div class="achievements-list">
+                    <div class="achievement">
+                        <strong>Banking Exam Launch:</strong> Led the launch of a new Banking exam preparation category, securing 1300+ signups in the first month and contributing to a 12% revenue boost for the platform.
+                        <div class="achievement-popup">
+                            <p><strong>Detailed Impact:</strong> This initiative involved comprehensive market research, competitive analysis, and a tailored product strategy to capture the banking exam preparation market. The rapid signup growth and significant revenue contribution validated the product-market fit and effective execution.</p>
+                        </div>
+                    </div>
+                    <div class="achievement">
+                        <strong>Automation Success:</strong> Designed and implemented a system for automated assignment evaluation, leading to a remarkable 96% reduction in stakeholder time previously spent on manual grading.
+                        <div class="achievement-popup">
+                            <p><strong>Detailed Impact:</strong> By automating the evaluation process, we streamlined operations, improved efficiency, and freed up valuable stakeholder time, allowing them to focus on more strategic tasks. This project involved deep collaboration with engineering and academic teams.</p>
+                        </div>
+                    </div>
+                    <div class="achievement">
+                        <strong>Growth Initiative:</strong> Collaborated cross-functionally to strategize and execute initiatives that resulted in a 9% increase in app downloads over two quarters.
+                        <div class="achievement-popup">
+                            <p><strong>Detailed Impact:</strong> This involved A/B testing, optimizing app store listings, and coordinating marketing campaigns. The sustained growth in app downloads demonstrates effective user acquisition strategies and product appeal.</p>
+                        </div>
+                    </div>
+                    <div class="achievement">
+                        <strong>Conversion Optimization:</strong> Redesigned the lead ingestion flow, which led to an 18% increase in conversions for targeted products.
+                        <div class="achievement-popup">
+                            <p><strong>Detailed Impact:</strong> Through user journey mapping, UI/UX improvements, and data analysis, the lead ingestion flow was optimized to reduce friction and improve conversion rates, directly impacting sales performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
             <h2>Featured Projects & Highlights</h2>
             <div class="projects-grid">
                 <div class="project-card">
+                    <div class="project-image-placeholder" style="background-image: url('https://placehold.co/400x180/ADD8E6/000000?text=Banking+Project');">
+                        </div>
                     <h3>Banking Category Launch</h3>
                     <p>Led the launch of a new Banking exam preparation category, securing 1300+ signups in the first month and contributing to a 12% revenue boost for the platform.</p>
                     <div class="project-tags">
@@ -602,6 +866,7 @@
                 </div>
                 
                 <div class="project-card">
+                    <div class="project-image-placeholder" style="background-image: url('https://placehold.co/400x180/90EE90/000000?text=Automation+Project');"></div>
                     <h3>Automated Assignment Evaluation</h3>
                     <p>Designed and implemented a system for automated assignment evaluation, leading to a remarkable 96% reduction in stakeholder time previously spent on manual grading.</p>
                     <div class="project-tags">
@@ -613,6 +878,7 @@
                 </div>
                 
                 <div class="project-card">
+                    <div class="project-image-placeholder" style="background-image: url('https://placehold.co/400x180/FFD700/000000?text=Growth+Project');"></div>
                     <h3>App Download Growth Initiative</h3>
                     <p>Collaborated cross-functionally to strategize and execute initiatives that resulted in a 9% increase in app downloads over two quarters.</p>
                     <div class="project-tags">
@@ -624,6 +890,7 @@
                 </div>
                 
                 <div class="project-card">
+                    <div class="project-image-placeholder" style="background-image: url('https://placehold.co/400x180/FFA07A/000000?text=Optimization+Project');"></div>
                     <h3>Lead Ingestion Flow Optimization</h3>
                     <p>Redesigned the lead ingestion flow, which led to an 18% increase in conversions for targeted products.</p>
                     <div class="project-tags">
@@ -639,7 +906,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="testimonials">
             <h2>Testimonials</h2>
             <div class="testimonial">
                 <p>Upasana quickly rose to independently lead features within months of joining. Her user-focused problem-solving, proactive collaboration with tech teams, and results-oriented approach made her an invaluable asset. I highly recommend her!</p>
@@ -655,7 +922,7 @@
             </div>
         </section>
 
-        <section class="section cta pulse">
+        <section class="section cta pulse" id="contact">
             <h2>Let's Connect & Build the Future</h2>
             <p>I am currently seeking exciting Product or Project Management roles in the UK, with availability starting from September 2025. I am deeply passionate about contributing to organizations that foster a healthy work culture, prioritize meaningful innovation, and offer ample opportunities to create lasting impact.</p>
             <br>
@@ -725,6 +992,21 @@
 
         document.querySelectorAll('.section').forEach(section => {
             observer.observe(section);
+        });
+
+        // Mobile navigation toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('nav-active');
+            });
         });
     </script>
 </body>
